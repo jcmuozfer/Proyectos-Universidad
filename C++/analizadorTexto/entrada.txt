@@ -1,0 +1,6 @@
+   /*Esto es un bucle*/
+
+   for(i=0;i<10;i++) //Segundo Comentario
+
+       x=x*2.5+i;
+

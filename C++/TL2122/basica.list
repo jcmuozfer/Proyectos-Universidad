@@ -1,0 +1,57 @@
+# Fichero de ejemplo de la versión básica sin errores
+
+LISTAS
+
+# Los nombres de estas listas deben empezar por mayúsculas
+Dias = {lunes, martes, miercoles, jueves, viernes, sabado, domingo} # los valores serán identificadores en minúsculas
+
+# Los valores también pueden ser enteros, reales o valores lógicos
+Primos = {2, 3, 5, 7, 11, 13}
+
+IVA = {4.0, 10.0, 21.0} 
+Bool = {cierto, falso, cierto, falso, cierto}
+Meses = {1 .. 12}  # rango de valores solo para enteros, solo ascendentes
+
+
+VARIABLES
+	Dias d; # se pueden definir variables de las listas anteriores
+	
+	Primos p; # las variables empiezan por minúsculas
+	
+	Meses m, n; 
+	Dias cita;
+	Entero i,j; # También se pueden definir variables de tipos enteros, reales y lógicos
+	Real xx, yy, zz; Logico es;
+	# ¡Cuidado! No se pueden usar palabras reservadas como identificadores (y, o, no, etc)
+	Entero limite;
+
+INICIO # Empieza el programa
+
+	limite <- 5;
+	Escribir ("Esto es una cadena constante que se escribe tal cual.");
+	NuevaLinea; # Esto escribe un salto de línea
+	Escribir (primero(Dias), " ", primero(Primos), " ", primero(IVA));
+	NuevaLinea;
+	Escribir (ultimo (Dias), " ", ultimo (Primos), " ", ultimo (IVA)); NuevaLinea;
+	NuevaLinea;
+	i <- 1;
+	Escribir(enesimo(Dias, i)); NuevaLinea;
+	i <- 2 ;
+	Escribir(enesimo(Dias, i)); NuevaLinea;
+	i <- i + 1 ;
+	Escribir(enesimo(Dias, i)); NuevaLinea;
+	Escribir(enesimo(Dias, i+1)); NuevaLinea;
+	Escribir(enesimo(Dias, 5)); 
+	NuevaLinea;
+	Si (i <= limite) 
+	[
+		Escribir("Dias laborables");
+	]
+	Si_no [
+		Escribir("Fin de semana");
+	]
+	NuevaLinea; Escribir("Adios");
+FIN
+
+# Y con esto acaba el programa
+

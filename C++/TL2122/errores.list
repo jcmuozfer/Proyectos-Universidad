@@ -1,0 +1,146 @@
+# Fichero de ejemplo con ALGUNOS errores sintácticos o semánticos
+# El fichero resultante puede variar mucho dependiendo de la gramática construida
+# Es necesario detectar estos errores, aunque quizás no todos simultáneamente
+# Es preferible ir incluyendo solo uno o dos  de estos errores en un programa correcto
+
+# Tras cada error se incluye un comentario con la descripción de lo que está mal
+
+
+LISTAS
+
+Dias = {lunes, martes, miercoles, jueves, viernes, sabado, domingo} 
+
+PrimosMal={2, 3, 5, 7, 11.0, 13}
+# Error: todos los elementos de una lista deben ser del mismo tipo
+
+Primos = {2, 3, 5, 7, 11, 13}
+
+IVAMal = {4.0, 10., 21.0, }
+# Error: hay una coma al final, al lado de la llave de cierre, sin un valor en medio
+
+IVA = {4.0, 10., 21.0 }
+ 
+booleano = {cierto, falso, cierto, falso, cierto}
+# Error: El identificador de una lista empieza en mayúscula
+
+Otra = {hola, Adios}
+# Error: los identificadores que son valores de una lista deben empezar por minúscula 
+ 
+MesesMal= {12 .. 1}  
+# Los límites del rango deben aparecer en orden ascendente
+
+Meses = {1 .. 12}
+
+Rango = {1..10}
+# Error: Los dos puntos del rango (..) no pueden estar pegados a los límites
+
+
+INICIO
+# Error: el bloque de código debe aparecer tras la definición del bloque de variables
+
+
+VARIABLES
+
+Dias D;
+# Error: los identificadores de las variables deben empezar por minúscula
+
+Semana s;
+# Error: no existe la lista Semana
+
+Dias d; 	
+Primos p;
+
+Meses m; n;
+# Error: la variable m si se definirá, pero n no, ya que faltaría el tipo, 
+# o habría que separar m y no con una coma.
+
+Dias cita;
+
+Entero i,j; 
+
+entero k, l;
+# Error: el nombre del tipo debe empezar por mayúscula
+
+
+Entero y, o;
+
+Real xx, yy, zz; Logico es;
+	
+Real j;
+# Error: ya se había definido una variable j
+
+	Entero limite;
+
+INICIO 
+
+Escribir(limite);
+# Posible error (o no): a la variable limite no se le ha asignado un valor previo
+
+	limite <- 4;
+	limite <- limite + 1;
+
+	Escribir ("Esto es una cadena constante")
+	NuevaLinea; 
+# Error: falta un ; tras la instrucción Escribir
+
+d <- enesimo(Dias, 10);
+# Error: la lista Dias no tiene 10 elementos
+
+d<- enesimo(Dias, 0);
+# Error: se empiezan a contar las posiciones de la lista a partir de 1
+
+	
+	m <- primero(Dias);
+# Error: m no es de tipo Dias
+
+d <- primero(Dias);
+	
+p<- primero (Primos);
+xx <-ultimo(IVA);
+	Escribir(Meses);
+	# Error: una lista no puede ser un valor de la instrucción Escribir
+	
+	Escribir (d, " ", p, " ", primero(IVA));
+	NuevaLinea;
+	d <- ultimo(Dias);
+	Escribir (d, " ", ultimo (Primos), " ", xx); NuevaLinea;
+	NuevaLinea;
+	i <- 4 / 0 + 1 ;
+	# Error: No se pueden hacer la operación división con divisor 0
+	i <- 4 % 0 + 1 ;
+	# Error: No se pueden hacer la operación módulo con divisor 0
+	i <- 1.0;
+	# Error: i está definida de tipo entero, no se le puede asignar un valor real
+	i <- 1;
+	Escribir(enesimo(Dias, 2*i/2)); NuevaLinea;
+	i <-3-1;
+
+Escribir(enesimo(Dias, 0+i)); NuevaLinea;
+i <- i + 1;
+
+Escribir(enesimo(Dias, i)); NuevaLinea;
+d <- enesimo(Dias,i+1);
+Escribir(d); NuevaLinea;
+Escribir(enesimo(Dias, -1+2*3))    ; 
+
+es <- cierto;
+es <- no es;
+# Error: no pueden aparecer variables de tipo lógico en la parte derecha de una asignación
+
+	NuevaLinea;
+	Si (i-1 <= limite-2+1) 
+	[
+		Escribir("Dias laborables");
+		NuevaLinea
+		# Error: falta el punto y coma al final de la línea anterior
+		
+		NuevaLinea; ]	
+	Si_no [
+		Escribir("Fin de semana"); ]
+	# Error: El corchete de cierre siempre debe eir en una nueva línea
+
+NuevaLinea; Escribir("Adios");
+NuevaLinea;
+
+# ERROR: Falta la palabra FIN para terminar el programa
+

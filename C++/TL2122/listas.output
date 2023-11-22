@@ -1,0 +1,2269 @@
+Gramática
+
+    0 $accept: inicio $end
+
+    1 inicio: blista bVariable bCodigo
+
+    2 bCodigo: INICIO saltoLinea secCodigo FIN saltoLinea
+
+    3 secCodigo: %empty
+    4          | secCodigo codigo
+    5          | secCodigo condicional
+
+    6 codigo: error '\n'
+    7       | ESCRIBIR '(' secEscribir ')' ';' saltoLinea
+    8       | IDENTIFICADOR2 ASIG expr ';' saltoLinea
+    9       | IDENTIFICADOR2 ASIG exprBool ';' saltoLinea
+   10       | IDENTIFICADOR2 ASIG PRIMERO '(' IDENTIFICADOR ')' ';' saltoLinea
+   11       | IDENTIFICADOR2 ASIG ULTIMO '(' IDENTIFICADOR ')' ';' saltoLinea
+   12       | IDENTIFICADOR2 ASIG ENESIMO '(' IDENTIFICADOR ',' expr ')' ';' saltoLinea
+   13       | NUEVALINEA ';' saltoLinea
+
+   14 condicional: parteSi parteSiNo
+
+   15 $@1: %empty
+
+   16 parteSi: SI exprBool $@1 saltoLinea '[' saltoLinea secCodigo ']' saltoLinea
+
+   17 parteSiNo: %empty
+
+   18 $@2: %empty
+
+   19 parteSiNo: SI_NO $@2 '[' saltoLinea secCodigo ']' saltoLinea
+
+   20 secEscribir: escribir
+   21            | secEscribir ',' escribir
+
+   22 escribir: expr
+   23         | exprBool
+   24         | TEXTO
+   25         | PRIMERO '(' IDENTIFICADOR ')' saltoLinea
+   26         | ULTIMO '(' IDENTIFICADOR ')' saltoLinea
+   27         | ENESIMO '(' IDENTIFICADOR ',' expr ')' saltoLinea
+
+   28 bVariable: VARIABLES saltoLinea secVariable
+
+   29 secVariable: %empty
+   30            | secVariable variable
+
+   31 variable: error '\n'
+   32         | tipo secIdentificador ';' saltoLinea
+
+   33 secIdentificador: IDENTIFICADOR2
+   34                 | secIdentificador ',' IDENTIFICADOR2
+
+   35 tipo: NOMENTERO
+   36     | NOMREAL
+   37     | LOGICO
+   38     | IDENTIFICADOR
+
+   39 blista: saltoLinea LISTAS saltoLinea secLista
+
+   40 secLista: listas
+   41         | secLista listas
+
+   42 listas: error '\n'
+   43       | IDENTIFICADOR ASIGLISTA secValores '}' saltoLinea
+
+   44 secValores: valores
+   45           | secValores ',' valores
+   46           | expr DOBLEPUNTO expr
+
+   47 valores: expr
+   48        | exprBool
+
+   49 exprBool: CIERTO
+   50         | FALSO
+   51         | exprBool IGUAL exprBool
+   52         | exprBool DISTINTO exprBool
+   53         | exprBool Y exprBool
+   54         | exprBool O exprBool
+   55         | NO exprBool
+   56         | expr IGUAL expr
+   57         | expr DISTINTO expr
+   58         | expr '<' expr
+   59         | expr '>' expr
+   60         | expr MENORI expr
+   61         | expr MAYORI expr
+   62         | '(' exprBool ')'
+
+   63 expr: ENTERO
+   64     | REAL
+   65     | IDENTIFICADOR2
+   66     | expr '+' expr
+   67     | expr '-' expr
+   68     | expr '*' expr
+   69     | expr '/' expr
+   70     | expr '%' expr
+   71     | '(' expr ')'
+   72     | '-' expr
+
+   73 saltoLinea: %empty
+   74           | saltoLinea '\n'
+
+
+Terminales con las reglas donde aparecen
+
+    $end (0) 0
+    '\n' (10) 6 31 42 74
+    '%' (37) 70
+    '(' (40) 7 10 11 12 25 26 27 62 71
+    ')' (41) 7 10 11 12 25 26 27 62 71
+    '*' (42) 68
+    '+' (43) 66
+    ',' (44) 12 21 27 34 45
+    '-' (45) 67 72
+    '/' (47) 69
+    ';' (59) 7 8 9 10 11 12 13 32
+    '<' (60) 58
+    '>' (62) 59
+    '[' (91) 16 19
+    ']' (93) 16 19
+    '}' (125) 43
+    error (256) 6 31 42
+    LISTAS (258) 39
+    ESCRIBIR (259) 7
+    ASIGLISTA (260) 43
+    ENTERO <c_entero> (261) 63
+    REAL <c_real> (262) 64
+    IDENTIFICADOR <c_cadena> (263) 10 11 12 25 26 27 38 43
+    IDENTIFICADOR2 <c_cadena> (264) 8 9 10 11 12 33 34 65
+    CIERTO <c_bool> (265) 49
+    FALSO <c_bool> (266) 50
+    DOBLEPUNTO (267) 46
+    NOMENTERO (268) 35
+    NOMREAL (269) 36
+    LOGICO (270) 37
+    VARIABLES (271) 28
+    INICIO (272) 2
+    FIN (273) 2
+    ASIG (274) 8 9 10 11 12
+    TEXTO <c_cadena> (275) 24
+    MAYORI (276) 61
+    MENORI (277) 60
+    IGUAL (278) 51 56
+    DISTINTO (279) 52 57
+    Y (280) 53
+    O (281) 54
+    NO (282) 55
+    NUEVALINEA (283) 13
+    PRIMERO (284) 10 25
+    ULTIMO (285) 11 26
+    ENESIMO (286) 12 27
+    SI (287) 16
+    SI_NO (288) 19
+    menos (289)
+    si_simple (290)
+
+
+No terminales con las reglas donde aparecen
+
+    $accept (51)
+        on left: 0
+    inicio (52)
+        on left: 1
+        on right: 0
+    bCodigo (53)
+        on left: 2
+        on right: 1
+    secCodigo (54)
+        on left: 3 4 5
+        on right: 2 4 5 16 19
+    codigo (55)
+        on left: 6 7 8 9 10 11 12 13
+        on right: 4
+    condicional (56)
+        on left: 14
+        on right: 5
+    parteSi (57)
+        on left: 16
+        on right: 14
+    $@1 (58)
+        on left: 15
+        on right: 16
+    parteSiNo (59)
+        on left: 17 19
+        on right: 14
+    $@2 (60)
+        on left: 18
+        on right: 19
+    secEscribir (61)
+        on left: 20 21
+        on right: 7 21
+    escribir <c_valores> (62)
+        on left: 22 23 24 25 26 27
+        on right: 20 21
+    bVariable (63)
+        on left: 28
+        on right: 1
+    secVariable (64)
+        on left: 29 30
+        on right: 28 30
+    variable (65)
+        on left: 31 32
+        on right: 30
+    secIdentificador (66)
+        on left: 33 34
+        on right: 32 34
+    tipo <c_valores> (67)
+        on left: 35 36 37 38
+        on right: 32
+    blista (68)
+        on left: 39
+        on right: 1
+    secLista (69)
+        on left: 40 41
+        on right: 39 41
+    listas (70)
+        on left: 42 43
+        on right: 40 41
+    secValores <c_valores> (71)
+        on left: 44 45 46
+        on right: 43 45
+    valores <c_valores> (72)
+        on left: 47 48
+        on right: 44 45
+    exprBool <c_bool> (73)
+        on left: 49 50 51 52 53 54 55 56 57 58 59 60 61 62
+        on right: 9 16 23 48 51 52 53 54 55 62
+    expr <c_valores> (74)
+        on left: 63 64 65 66 67 68 69 70 71 72
+        on right: 8 12 22 27 46 47 56 57 58 59 60 61 66 67 68 69 70 71 72
+    saltoLinea (75)
+        on left: 73 74
+        on right: 2 7 8 9 10 11 12 13 16 19 25 26 27 28 32 39 43 74
+
+
+Estado 0
+
+    0 $accept: . inicio $end
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    inicio      ir al estado 1
+    blista      ir al estado 2
+    saltoLinea  ir al estado 3
+
+
+Estado 1
+
+    0 $accept: inicio . $end
+
+    $end  desplazar e ir al estado 4
+
+
+Estado 2
+
+    1 inicio: blista . bVariable bCodigo
+
+    VARIABLES  desplazar e ir al estado 5
+
+    bVariable  ir al estado 6
+
+
+Estado 3
+
+   39 blista: saltoLinea . LISTAS saltoLinea secLista
+   74 saltoLinea: saltoLinea . '\n'
+
+    LISTAS  desplazar e ir al estado 7
+    '\n'    desplazar e ir al estado 8
+
+
+Estado 4
+
+    0 $accept: inicio $end .
+
+    $default  aceptar
+
+
+Estado 5
+
+   28 bVariable: VARIABLES . saltoLinea secVariable
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 9
+
+
+Estado 6
+
+    1 inicio: blista bVariable . bCodigo
+
+    INICIO  desplazar e ir al estado 10
+
+    bCodigo  ir al estado 11
+
+
+Estado 7
+
+   39 blista: saltoLinea LISTAS . saltoLinea secLista
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 12
+
+
+Estado 8
+
+   74 saltoLinea: saltoLinea '\n' .
+
+    $default  reduce usando la regla 74 (saltoLinea)
+
+
+Estado 9
+
+   28 bVariable: VARIABLES saltoLinea . secVariable
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 29 (secVariable)
+
+    secVariable  ir al estado 13
+
+
+Estado 10
+
+    2 bCodigo: INICIO . saltoLinea secCodigo FIN saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 14
+
+
+Estado 11
+
+    1 inicio: blista bVariable bCodigo .
+
+    $default  reduce usando la regla 1 (inicio)
+
+
+Estado 12
+
+   39 blista: saltoLinea LISTAS saltoLinea . secLista
+   74 saltoLinea: saltoLinea . '\n'
+
+    error          desplazar e ir al estado 15
+    IDENTIFICADOR  desplazar e ir al estado 16
+    '\n'           desplazar e ir al estado 8
+
+    secLista  ir al estado 17
+    listas    ir al estado 18
+
+
+Estado 13
+
+   28 bVariable: VARIABLES saltoLinea secVariable .
+   30 secVariable: secVariable . variable
+
+    error          desplazar e ir al estado 19
+    IDENTIFICADOR  desplazar e ir al estado 20
+    NOMENTERO      desplazar e ir al estado 21
+    NOMREAL        desplazar e ir al estado 22
+    LOGICO         desplazar e ir al estado 23
+
+    INICIO  reduce usando la regla 28 (bVariable)
+
+    variable  ir al estado 24
+    tipo      ir al estado 25
+
+
+Estado 14
+
+    2 bCodigo: INICIO saltoLinea . secCodigo FIN saltoLinea
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 3 (secCodigo)
+
+    secCodigo  ir al estado 26
+
+
+Estado 15
+
+   42 listas: error . '\n'
+
+    '\n'  desplazar e ir al estado 27
+
+
+Estado 16
+
+   43 listas: IDENTIFICADOR . ASIGLISTA secValores '}' saltoLinea
+
+    ASIGLISTA  desplazar e ir al estado 28
+
+
+Estado 17
+
+   39 blista: saltoLinea LISTAS saltoLinea secLista .
+   41 secLista: secLista . listas
+
+    error          desplazar e ir al estado 15
+    IDENTIFICADOR  desplazar e ir al estado 16
+
+    VARIABLES  reduce usando la regla 39 (blista)
+
+    listas  ir al estado 29
+
+
+Estado 18
+
+   40 secLista: listas .
+
+    $default  reduce usando la regla 40 (secLista)
+
+
+Estado 19
+
+   31 variable: error . '\n'
+
+    '\n'  desplazar e ir al estado 30
+
+
+Estado 20
+
+   38 tipo: IDENTIFICADOR .
+
+    $default  reduce usando la regla 38 (tipo)
+
+
+Estado 21
+
+   35 tipo: NOMENTERO .
+
+    $default  reduce usando la regla 35 (tipo)
+
+
+Estado 22
+
+   36 tipo: NOMREAL .
+
+    $default  reduce usando la regla 36 (tipo)
+
+
+Estado 23
+
+   37 tipo: LOGICO .
+
+    $default  reduce usando la regla 37 (tipo)
+
+
+Estado 24
+
+   30 secVariable: secVariable variable .
+
+    $default  reduce usando la regla 30 (secVariable)
+
+
+Estado 25
+
+   32 variable: tipo . secIdentificador ';' saltoLinea
+
+    IDENTIFICADOR2  desplazar e ir al estado 31
+
+    secIdentificador  ir al estado 32
+
+
+Estado 26
+
+    2 bCodigo: INICIO saltoLinea secCodigo . FIN saltoLinea
+    4 secCodigo: secCodigo . codigo
+    5          | secCodigo . condicional
+
+    error           desplazar e ir al estado 33
+    ESCRIBIR        desplazar e ir al estado 34
+    IDENTIFICADOR2  desplazar e ir al estado 35
+    FIN             desplazar e ir al estado 36
+    NUEVALINEA      desplazar e ir al estado 37
+    SI              desplazar e ir al estado 38
+
+    codigo       ir al estado 39
+    condicional  ir al estado 40
+    parteSi      ir al estado 41
+
+
+Estado 27
+
+   42 listas: error '\n' .
+
+    $default  reduce usando la regla 42 (listas)
+
+
+Estado 28
+
+   43 listas: IDENTIFICADOR ASIGLISTA . secValores '}' saltoLinea
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    NO              desplazar e ir al estado 47
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    secValores  ir al estado 50
+    valores     ir al estado 51
+    exprBool    ir al estado 52
+    expr        ir al estado 53
+
+
+Estado 29
+
+   41 secLista: secLista listas .
+
+    $default  reduce usando la regla 41 (secLista)
+
+
+Estado 30
+
+   31 variable: error '\n' .
+
+    $default  reduce usando la regla 31 (variable)
+
+
+Estado 31
+
+   33 secIdentificador: IDENTIFICADOR2 .
+
+    $default  reduce usando la regla 33 (secIdentificador)
+
+
+Estado 32
+
+   32 variable: tipo secIdentificador . ';' saltoLinea
+   34 secIdentificador: secIdentificador . ',' IDENTIFICADOR2
+
+    ';'  desplazar e ir al estado 54
+    ','  desplazar e ir al estado 55
+
+
+Estado 33
+
+    6 codigo: error . '\n'
+
+    '\n'  desplazar e ir al estado 56
+
+
+Estado 34
+
+    7 codigo: ESCRIBIR . '(' secEscribir ')' ';' saltoLinea
+
+    '('  desplazar e ir al estado 57
+
+
+Estado 35
+
+    8 codigo: IDENTIFICADOR2 . ASIG expr ';' saltoLinea
+    9       | IDENTIFICADOR2 . ASIG exprBool ';' saltoLinea
+   10       | IDENTIFICADOR2 . ASIG PRIMERO '(' IDENTIFICADOR ')' ';' saltoLinea
+   11       | IDENTIFICADOR2 . ASIG ULTIMO '(' IDENTIFICADOR ')' ';' saltoLinea
+   12       | IDENTIFICADOR2 . ASIG ENESIMO '(' IDENTIFICADOR ',' expr ')' ';' saltoLinea
+
+    ASIG  desplazar e ir al estado 58
+
+
+Estado 36
+
+    2 bCodigo: INICIO saltoLinea secCodigo FIN . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 59
+
+
+Estado 37
+
+   13 codigo: NUEVALINEA . ';' saltoLinea
+
+    ';'  desplazar e ir al estado 60
+
+
+Estado 38
+
+   16 parteSi: SI . exprBool $@1 saltoLinea '[' saltoLinea secCodigo ']' saltoLinea
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    NO              desplazar e ir al estado 47
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    exprBool  ir al estado 61
+    expr      ir al estado 62
+
+
+Estado 39
+
+    4 secCodigo: secCodigo codigo .
+
+    $default  reduce usando la regla 4 (secCodigo)
+
+
+Estado 40
+
+    5 secCodigo: secCodigo condicional .
+
+    $default  reduce usando la regla 5 (secCodigo)
+
+
+Estado 41
+
+   14 condicional: parteSi . parteSiNo
+
+    SI_NO  desplazar e ir al estado 63
+
+    $default  reduce usando la regla 17 (parteSiNo)
+
+    parteSiNo  ir al estado 64
+
+
+Estado 42
+
+   63 expr: ENTERO .
+
+    $default  reduce usando la regla 63 (expr)
+
+
+Estado 43
+
+   64 expr: REAL .
+
+    $default  reduce usando la regla 64 (expr)
+
+
+Estado 44
+
+   65 expr: IDENTIFICADOR2 .
+
+    $default  reduce usando la regla 65 (expr)
+
+
+Estado 45
+
+   49 exprBool: CIERTO .
+
+    $default  reduce usando la regla 49 (exprBool)
+
+
+Estado 46
+
+   50 exprBool: FALSO .
+
+    $default  reduce usando la regla 50 (exprBool)
+
+
+Estado 47
+
+   55 exprBool: NO . exprBool
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    NO              desplazar e ir al estado 47
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    exprBool  ir al estado 65
+    expr      ir al estado 62
+
+
+Estado 48
+
+   72 expr: '-' . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 67
+
+
+Estado 49
+
+   62 exprBool: '(' . exprBool ')'
+   71 expr: '(' . expr ')'
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    NO              desplazar e ir al estado 47
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    exprBool  ir al estado 68
+    expr      ir al estado 69
+
+
+Estado 50
+
+   43 listas: IDENTIFICADOR ASIGLISTA secValores . '}' saltoLinea
+   45 secValores: secValores . ',' valores
+
+    ','  desplazar e ir al estado 70
+    '}'  desplazar e ir al estado 71
+
+
+Estado 51
+
+   44 secValores: valores .
+
+    $default  reduce usando la regla 44 (secValores)
+
+
+Estado 52
+
+   48 valores: exprBool .
+   51 exprBool: exprBool . IGUAL exprBool
+   52         | exprBool . DISTINTO exprBool
+   53         | exprBool . Y exprBool
+   54         | exprBool . O exprBool
+
+    IGUAL     desplazar e ir al estado 72
+    DISTINTO  desplazar e ir al estado 73
+    Y         desplazar e ir al estado 74
+    O         desplazar e ir al estado 75
+
+    $default  reduce usando la regla 48 (valores)
+
+
+Estado 53
+
+   46 secValores: expr . DOBLEPUNTO expr
+   47 valores: expr .
+   56 exprBool: expr . IGUAL expr
+   57         | expr . DISTINTO expr
+   58         | expr . '<' expr
+   59         | expr . '>' expr
+   60         | expr . MENORI expr
+   61         | expr . MAYORI expr
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    DOBLEPUNTO  desplazar e ir al estado 76
+    MAYORI      desplazar e ir al estado 77
+    MENORI      desplazar e ir al estado 78
+    IGUAL       desplazar e ir al estado 79
+    DISTINTO    desplazar e ir al estado 80
+    '<'         desplazar e ir al estado 81
+    '>'         desplazar e ir al estado 82
+    '+'         desplazar e ir al estado 83
+    '-'         desplazar e ir al estado 84
+    '*'         desplazar e ir al estado 85
+    '/'         desplazar e ir al estado 86
+    '%'         desplazar e ir al estado 87
+
+    $default  reduce usando la regla 47 (valores)
+
+
+Estado 54
+
+   32 variable: tipo secIdentificador ';' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 88
+
+
+Estado 55
+
+   34 secIdentificador: secIdentificador ',' . IDENTIFICADOR2
+
+    IDENTIFICADOR2  desplazar e ir al estado 89
+
+
+Estado 56
+
+    6 codigo: error '\n' .
+
+    $default  reduce usando la regla 6 (codigo)
+
+
+Estado 57
+
+    7 codigo: ESCRIBIR '(' . secEscribir ')' ';' saltoLinea
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    TEXTO           desplazar e ir al estado 90
+    NO              desplazar e ir al estado 47
+    PRIMERO         desplazar e ir al estado 91
+    ULTIMO          desplazar e ir al estado 92
+    ENESIMO         desplazar e ir al estado 93
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    secEscribir  ir al estado 94
+    escribir     ir al estado 95
+    exprBool     ir al estado 96
+    expr         ir al estado 97
+
+
+Estado 58
+
+    8 codigo: IDENTIFICADOR2 ASIG . expr ';' saltoLinea
+    9       | IDENTIFICADOR2 ASIG . exprBool ';' saltoLinea
+   10       | IDENTIFICADOR2 ASIG . PRIMERO '(' IDENTIFICADOR ')' ';' saltoLinea
+   11       | IDENTIFICADOR2 ASIG . ULTIMO '(' IDENTIFICADOR ')' ';' saltoLinea
+   12       | IDENTIFICADOR2 ASIG . ENESIMO '(' IDENTIFICADOR ',' expr ')' ';' saltoLinea
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    NO              desplazar e ir al estado 47
+    PRIMERO         desplazar e ir al estado 98
+    ULTIMO          desplazar e ir al estado 99
+    ENESIMO         desplazar e ir al estado 100
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    exprBool  ir al estado 101
+    expr      ir al estado 102
+
+
+Estado 59
+
+    2 bCodigo: INICIO saltoLinea secCodigo FIN saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 2 (bCodigo)
+
+
+Estado 60
+
+   13 codigo: NUEVALINEA ';' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 103
+
+
+Estado 61
+
+   16 parteSi: SI exprBool . $@1 saltoLinea '[' saltoLinea secCodigo ']' saltoLinea
+   51 exprBool: exprBool . IGUAL exprBool
+   52         | exprBool . DISTINTO exprBool
+   53         | exprBool . Y exprBool
+   54         | exprBool . O exprBool
+
+    IGUAL     desplazar e ir al estado 72
+    DISTINTO  desplazar e ir al estado 73
+    Y         desplazar e ir al estado 74
+    O         desplazar e ir al estado 75
+
+    $default  reduce usando la regla 15 ($@1)
+
+    $@1  ir al estado 104
+
+
+Estado 62
+
+   56 exprBool: expr . IGUAL expr
+   57         | expr . DISTINTO expr
+   58         | expr . '<' expr
+   59         | expr . '>' expr
+   60         | expr . MENORI expr
+   61         | expr . MAYORI expr
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    MAYORI    desplazar e ir al estado 77
+    MENORI    desplazar e ir al estado 78
+    IGUAL     desplazar e ir al estado 79
+    DISTINTO  desplazar e ir al estado 80
+    '<'       desplazar e ir al estado 81
+    '>'       desplazar e ir al estado 82
+    '+'       desplazar e ir al estado 83
+    '-'       desplazar e ir al estado 84
+    '*'       desplazar e ir al estado 85
+    '/'       desplazar e ir al estado 86
+    '%'       desplazar e ir al estado 87
+
+
+Estado 63
+
+   19 parteSiNo: SI_NO . $@2 '[' saltoLinea secCodigo ']' saltoLinea
+
+    $default  reduce usando la regla 18 ($@2)
+
+    $@2  ir al estado 105
+
+
+Estado 64
+
+   14 condicional: parteSi parteSiNo .
+
+    $default  reduce usando la regla 14 (condicional)
+
+
+Estado 65
+
+   51 exprBool: exprBool . IGUAL exprBool
+   52         | exprBool . DISTINTO exprBool
+   53         | exprBool . Y exprBool
+   54         | exprBool . O exprBool
+   55         | NO exprBool .
+
+    $default  reduce usando la regla 55 (exprBool)
+
+
+Estado 66
+
+   71 expr: '(' . expr ')'
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 106
+
+
+Estado 67
+
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+   72     | '-' expr .
+
+    $default  reduce usando la regla 72 (expr)
+
+
+Estado 68
+
+   51 exprBool: exprBool . IGUAL exprBool
+   52         | exprBool . DISTINTO exprBool
+   53         | exprBool . Y exprBool
+   54         | exprBool . O exprBool
+   62         | '(' exprBool . ')'
+
+    IGUAL     desplazar e ir al estado 72
+    DISTINTO  desplazar e ir al estado 73
+    Y         desplazar e ir al estado 74
+    O         desplazar e ir al estado 75
+    ')'       desplazar e ir al estado 107
+
+
+Estado 69
+
+   56 exprBool: expr . IGUAL expr
+   57         | expr . DISTINTO expr
+   58         | expr . '<' expr
+   59         | expr . '>' expr
+   60         | expr . MENORI expr
+   61         | expr . MAYORI expr
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+   71     | '(' expr . ')'
+
+    MAYORI    desplazar e ir al estado 77
+    MENORI    desplazar e ir al estado 78
+    IGUAL     desplazar e ir al estado 79
+    DISTINTO  desplazar e ir al estado 80
+    '<'       desplazar e ir al estado 81
+    '>'       desplazar e ir al estado 82
+    '+'       desplazar e ir al estado 83
+    '-'       desplazar e ir al estado 84
+    '*'       desplazar e ir al estado 85
+    '/'       desplazar e ir al estado 86
+    '%'       desplazar e ir al estado 87
+    ')'       desplazar e ir al estado 108
+
+
+Estado 70
+
+   45 secValores: secValores ',' . valores
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    NO              desplazar e ir al estado 47
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    valores   ir al estado 109
+    exprBool  ir al estado 52
+    expr      ir al estado 110
+
+
+Estado 71
+
+   43 listas: IDENTIFICADOR ASIGLISTA secValores '}' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 111
+
+
+Estado 72
+
+   51 exprBool: exprBool IGUAL . exprBool
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    NO              desplazar e ir al estado 47
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    exprBool  ir al estado 112
+    expr      ir al estado 62
+
+
+Estado 73
+
+   52 exprBool: exprBool DISTINTO . exprBool
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    NO              desplazar e ir al estado 47
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    exprBool  ir al estado 113
+    expr      ir al estado 62
+
+
+Estado 74
+
+   53 exprBool: exprBool Y . exprBool
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    NO              desplazar e ir al estado 47
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    exprBool  ir al estado 114
+    expr      ir al estado 62
+
+
+Estado 75
+
+   54 exprBool: exprBool O . exprBool
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    NO              desplazar e ir al estado 47
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    exprBool  ir al estado 115
+    expr      ir al estado 62
+
+
+Estado 76
+
+   46 secValores: expr DOBLEPUNTO . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 116
+
+
+Estado 77
+
+   61 exprBool: expr MAYORI . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 117
+
+
+Estado 78
+
+   60 exprBool: expr MENORI . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 118
+
+
+Estado 79
+
+   56 exprBool: expr IGUAL . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 119
+
+
+Estado 80
+
+   57 exprBool: expr DISTINTO . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 120
+
+
+Estado 81
+
+   58 exprBool: expr '<' . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 121
+
+
+Estado 82
+
+   59 exprBool: expr '>' . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 122
+
+
+Estado 83
+
+   66 expr: expr '+' . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 123
+
+
+Estado 84
+
+   67 expr: expr '-' . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 124
+
+
+Estado 85
+
+   68 expr: expr '*' . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 125
+
+
+Estado 86
+
+   69 expr: expr '/' . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 126
+
+
+Estado 87
+
+   70 expr: expr '%' . expr
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 127
+
+
+Estado 88
+
+   32 variable: tipo secIdentificador ';' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 32 (variable)
+
+
+Estado 89
+
+   34 secIdentificador: secIdentificador ',' IDENTIFICADOR2 .
+
+    $default  reduce usando la regla 34 (secIdentificador)
+
+
+Estado 90
+
+   24 escribir: TEXTO .
+
+    $default  reduce usando la regla 24 (escribir)
+
+
+Estado 91
+
+   25 escribir: PRIMERO . '(' IDENTIFICADOR ')' saltoLinea
+
+    '('  desplazar e ir al estado 128
+
+
+Estado 92
+
+   26 escribir: ULTIMO . '(' IDENTIFICADOR ')' saltoLinea
+
+    '('  desplazar e ir al estado 129
+
+
+Estado 93
+
+   27 escribir: ENESIMO . '(' IDENTIFICADOR ',' expr ')' saltoLinea
+
+    '('  desplazar e ir al estado 130
+
+
+Estado 94
+
+    7 codigo: ESCRIBIR '(' secEscribir . ')' ';' saltoLinea
+   21 secEscribir: secEscribir . ',' escribir
+
+    ')'  desplazar e ir al estado 131
+    ','  desplazar e ir al estado 132
+
+
+Estado 95
+
+   20 secEscribir: escribir .
+
+    $default  reduce usando la regla 20 (secEscribir)
+
+
+Estado 96
+
+   23 escribir: exprBool .
+   51 exprBool: exprBool . IGUAL exprBool
+   52         | exprBool . DISTINTO exprBool
+   53         | exprBool . Y exprBool
+   54         | exprBool . O exprBool
+
+    IGUAL     desplazar e ir al estado 72
+    DISTINTO  desplazar e ir al estado 73
+    Y         desplazar e ir al estado 74
+    O         desplazar e ir al estado 75
+
+    $default  reduce usando la regla 23 (escribir)
+
+
+Estado 97
+
+   22 escribir: expr .
+   56 exprBool: expr . IGUAL expr
+   57         | expr . DISTINTO expr
+   58         | expr . '<' expr
+   59         | expr . '>' expr
+   60         | expr . MENORI expr
+   61         | expr . MAYORI expr
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    MAYORI    desplazar e ir al estado 77
+    MENORI    desplazar e ir al estado 78
+    IGUAL     desplazar e ir al estado 79
+    DISTINTO  desplazar e ir al estado 80
+    '<'       desplazar e ir al estado 81
+    '>'       desplazar e ir al estado 82
+    '+'       desplazar e ir al estado 83
+    '-'       desplazar e ir al estado 84
+    '*'       desplazar e ir al estado 85
+    '/'       desplazar e ir al estado 86
+    '%'       desplazar e ir al estado 87
+
+    $default  reduce usando la regla 22 (escribir)
+
+
+Estado 98
+
+   10 codigo: IDENTIFICADOR2 ASIG PRIMERO . '(' IDENTIFICADOR ')' ';' saltoLinea
+
+    '('  desplazar e ir al estado 133
+
+
+Estado 99
+
+   11 codigo: IDENTIFICADOR2 ASIG ULTIMO . '(' IDENTIFICADOR ')' ';' saltoLinea
+
+    '('  desplazar e ir al estado 134
+
+
+Estado 100
+
+   12 codigo: IDENTIFICADOR2 ASIG ENESIMO . '(' IDENTIFICADOR ',' expr ')' ';' saltoLinea
+
+    '('  desplazar e ir al estado 135
+
+
+Estado 101
+
+    9 codigo: IDENTIFICADOR2 ASIG exprBool . ';' saltoLinea
+   51 exprBool: exprBool . IGUAL exprBool
+   52         | exprBool . DISTINTO exprBool
+   53         | exprBool . Y exprBool
+   54         | exprBool . O exprBool
+
+    IGUAL     desplazar e ir al estado 72
+    DISTINTO  desplazar e ir al estado 73
+    Y         desplazar e ir al estado 74
+    O         desplazar e ir al estado 75
+    ';'       desplazar e ir al estado 136
+
+
+Estado 102
+
+    8 codigo: IDENTIFICADOR2 ASIG expr . ';' saltoLinea
+   56 exprBool: expr . IGUAL expr
+   57         | expr . DISTINTO expr
+   58         | expr . '<' expr
+   59         | expr . '>' expr
+   60         | expr . MENORI expr
+   61         | expr . MAYORI expr
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    MAYORI    desplazar e ir al estado 77
+    MENORI    desplazar e ir al estado 78
+    IGUAL     desplazar e ir al estado 79
+    DISTINTO  desplazar e ir al estado 80
+    '<'       desplazar e ir al estado 81
+    '>'       desplazar e ir al estado 82
+    '+'       desplazar e ir al estado 83
+    '-'       desplazar e ir al estado 84
+    '*'       desplazar e ir al estado 85
+    '/'       desplazar e ir al estado 86
+    '%'       desplazar e ir al estado 87
+    ';'       desplazar e ir al estado 137
+
+
+Estado 103
+
+   13 codigo: NUEVALINEA ';' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 13 (codigo)
+
+
+Estado 104
+
+   16 parteSi: SI exprBool $@1 . saltoLinea '[' saltoLinea secCodigo ']' saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 138
+
+
+Estado 105
+
+   19 parteSiNo: SI_NO $@2 . '[' saltoLinea secCodigo ']' saltoLinea
+
+    '['  desplazar e ir al estado 139
+
+
+Estado 106
+
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+   71     | '(' expr . ')'
+
+    '+'  desplazar e ir al estado 83
+    '-'  desplazar e ir al estado 84
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+    ')'  desplazar e ir al estado 108
+
+
+Estado 107
+
+   62 exprBool: '(' exprBool ')' .
+
+    $default  reduce usando la regla 62 (exprBool)
+
+
+Estado 108
+
+   71 expr: '(' expr ')' .
+
+    $default  reduce usando la regla 71 (expr)
+
+
+Estado 109
+
+   45 secValores: secValores ',' valores .
+
+    $default  reduce usando la regla 45 (secValores)
+
+
+Estado 110
+
+   47 valores: expr .
+   56 exprBool: expr . IGUAL expr
+   57         | expr . DISTINTO expr
+   58         | expr . '<' expr
+   59         | expr . '>' expr
+   60         | expr . MENORI expr
+   61         | expr . MAYORI expr
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    MAYORI    desplazar e ir al estado 77
+    MENORI    desplazar e ir al estado 78
+    IGUAL     desplazar e ir al estado 79
+    DISTINTO  desplazar e ir al estado 80
+    '<'       desplazar e ir al estado 81
+    '>'       desplazar e ir al estado 82
+    '+'       desplazar e ir al estado 83
+    '-'       desplazar e ir al estado 84
+    '*'       desplazar e ir al estado 85
+    '/'       desplazar e ir al estado 86
+    '%'       desplazar e ir al estado 87
+
+    $default  reduce usando la regla 47 (valores)
+
+
+Estado 111
+
+   43 listas: IDENTIFICADOR ASIGLISTA secValores '}' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 43 (listas)
+
+
+Estado 112
+
+   51 exprBool: exprBool . IGUAL exprBool
+   51         | exprBool IGUAL exprBool .
+   52         | exprBool . DISTINTO exprBool
+   53         | exprBool . Y exprBool
+   54         | exprBool . O exprBool
+
+    $default  reduce usando la regla 51 (exprBool)
+
+
+Estado 113
+
+   51 exprBool: exprBool . IGUAL exprBool
+   52         | exprBool . DISTINTO exprBool
+   52         | exprBool DISTINTO exprBool .
+   53         | exprBool . Y exprBool
+   54         | exprBool . O exprBool
+
+    $default  reduce usando la regla 52 (exprBool)
+
+
+Estado 114
+
+   51 exprBool: exprBool . IGUAL exprBool
+   52         | exprBool . DISTINTO exprBool
+   53         | exprBool . Y exprBool
+   53         | exprBool Y exprBool .
+   54         | exprBool . O exprBool
+
+    IGUAL     desplazar e ir al estado 72
+    DISTINTO  desplazar e ir al estado 73
+
+    $default  reduce usando la regla 53 (exprBool)
+
+
+Estado 115
+
+   51 exprBool: exprBool . IGUAL exprBool
+   52         | exprBool . DISTINTO exprBool
+   53         | exprBool . Y exprBool
+   54         | exprBool . O exprBool
+   54         | exprBool O exprBool .
+
+    IGUAL     desplazar e ir al estado 72
+    DISTINTO  desplazar e ir al estado 73
+    Y         desplazar e ir al estado 74
+
+    $default  reduce usando la regla 54 (exprBool)
+
+
+Estado 116
+
+   46 secValores: expr DOBLEPUNTO expr .
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 83
+    '-'  desplazar e ir al estado 84
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+
+    $default  reduce usando la regla 46 (secValores)
+
+
+Estado 117
+
+   61 exprBool: expr MAYORI expr .
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 83
+    '-'  desplazar e ir al estado 84
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+
+    $default  reduce usando la regla 61 (exprBool)
+
+
+Estado 118
+
+   60 exprBool: expr MENORI expr .
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 83
+    '-'  desplazar e ir al estado 84
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+
+    $default  reduce usando la regla 60 (exprBool)
+
+
+Estado 119
+
+   56 exprBool: expr IGUAL expr .
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 83
+    '-'  desplazar e ir al estado 84
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+
+    $default  reduce usando la regla 56 (exprBool)
+
+
+Estado 120
+
+   57 exprBool: expr DISTINTO expr .
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 83
+    '-'  desplazar e ir al estado 84
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+
+    $default  reduce usando la regla 57 (exprBool)
+
+
+Estado 121
+
+   58 exprBool: expr '<' expr .
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 83
+    '-'  desplazar e ir al estado 84
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+
+    $default  reduce usando la regla 58 (exprBool)
+
+
+Estado 122
+
+   59 exprBool: expr '>' expr .
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 83
+    '-'  desplazar e ir al estado 84
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+
+    $default  reduce usando la regla 59 (exprBool)
+
+
+Estado 123
+
+   66 expr: expr . '+' expr
+   66     | expr '+' expr .
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+
+    $default  reduce usando la regla 66 (expr)
+
+
+Estado 124
+
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   67     | expr '-' expr .
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+
+    $default  reduce usando la regla 67 (expr)
+
+
+Estado 125
+
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   68     | expr '*' expr .
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    $default  reduce usando la regla 68 (expr)
+
+
+Estado 126
+
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   69     | expr '/' expr .
+   70     | expr . '%' expr
+
+    $default  reduce usando la regla 69 (expr)
+
+
+Estado 127
+
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+   70     | expr '%' expr .
+
+    $default  reduce usando la regla 70 (expr)
+
+
+Estado 128
+
+   25 escribir: PRIMERO '(' . IDENTIFICADOR ')' saltoLinea
+
+    IDENTIFICADOR  desplazar e ir al estado 140
+
+
+Estado 129
+
+   26 escribir: ULTIMO '(' . IDENTIFICADOR ')' saltoLinea
+
+    IDENTIFICADOR  desplazar e ir al estado 141
+
+
+Estado 130
+
+   27 escribir: ENESIMO '(' . IDENTIFICADOR ',' expr ')' saltoLinea
+
+    IDENTIFICADOR  desplazar e ir al estado 142
+
+
+Estado 131
+
+    7 codigo: ESCRIBIR '(' secEscribir ')' . ';' saltoLinea
+
+    ';'  desplazar e ir al estado 143
+
+
+Estado 132
+
+   21 secEscribir: secEscribir ',' . escribir
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    CIERTO          desplazar e ir al estado 45
+    FALSO           desplazar e ir al estado 46
+    TEXTO           desplazar e ir al estado 90
+    NO              desplazar e ir al estado 47
+    PRIMERO         desplazar e ir al estado 91
+    ULTIMO          desplazar e ir al estado 92
+    ENESIMO         desplazar e ir al estado 93
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 49
+
+    escribir  ir al estado 144
+    exprBool  ir al estado 96
+    expr      ir al estado 97
+
+
+Estado 133
+
+   10 codigo: IDENTIFICADOR2 ASIG PRIMERO '(' . IDENTIFICADOR ')' ';' saltoLinea
+
+    IDENTIFICADOR  desplazar e ir al estado 145
+
+
+Estado 134
+
+   11 codigo: IDENTIFICADOR2 ASIG ULTIMO '(' . IDENTIFICADOR ')' ';' saltoLinea
+
+    IDENTIFICADOR  desplazar e ir al estado 146
+
+
+Estado 135
+
+   12 codigo: IDENTIFICADOR2 ASIG ENESIMO '(' . IDENTIFICADOR ',' expr ')' ';' saltoLinea
+
+    IDENTIFICADOR  desplazar e ir al estado 147
+
+
+Estado 136
+
+    9 codigo: IDENTIFICADOR2 ASIG exprBool ';' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 148
+
+
+Estado 137
+
+    8 codigo: IDENTIFICADOR2 ASIG expr ';' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 149
+
+
+Estado 138
+
+   16 parteSi: SI exprBool $@1 saltoLinea . '[' saltoLinea secCodigo ']' saltoLinea
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+    '['   desplazar e ir al estado 150
+
+
+Estado 139
+
+   19 parteSiNo: SI_NO $@2 '[' . saltoLinea secCodigo ']' saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 151
+
+
+Estado 140
+
+   25 escribir: PRIMERO '(' IDENTIFICADOR . ')' saltoLinea
+
+    ')'  desplazar e ir al estado 152
+
+
+Estado 141
+
+   26 escribir: ULTIMO '(' IDENTIFICADOR . ')' saltoLinea
+
+    ')'  desplazar e ir al estado 153
+
+
+Estado 142
+
+   27 escribir: ENESIMO '(' IDENTIFICADOR . ',' expr ')' saltoLinea
+
+    ','  desplazar e ir al estado 154
+
+
+Estado 143
+
+    7 codigo: ESCRIBIR '(' secEscribir ')' ';' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 155
+
+
+Estado 144
+
+   21 secEscribir: secEscribir ',' escribir .
+
+    $default  reduce usando la regla 21 (secEscribir)
+
+
+Estado 145
+
+   10 codigo: IDENTIFICADOR2 ASIG PRIMERO '(' IDENTIFICADOR . ')' ';' saltoLinea
+
+    ')'  desplazar e ir al estado 156
+
+
+Estado 146
+
+   11 codigo: IDENTIFICADOR2 ASIG ULTIMO '(' IDENTIFICADOR . ')' ';' saltoLinea
+
+    ')'  desplazar e ir al estado 157
+
+
+Estado 147
+
+   12 codigo: IDENTIFICADOR2 ASIG ENESIMO '(' IDENTIFICADOR . ',' expr ')' ';' saltoLinea
+
+    ','  desplazar e ir al estado 158
+
+
+Estado 148
+
+    9 codigo: IDENTIFICADOR2 ASIG exprBool ';' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 9 (codigo)
+
+
+Estado 149
+
+    8 codigo: IDENTIFICADOR2 ASIG expr ';' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 8 (codigo)
+
+
+Estado 150
+
+   16 parteSi: SI exprBool $@1 saltoLinea '[' . saltoLinea secCodigo ']' saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 159
+
+
+Estado 151
+
+   19 parteSiNo: SI_NO $@2 '[' saltoLinea . secCodigo ']' saltoLinea
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 3 (secCodigo)
+
+    secCodigo  ir al estado 160
+
+
+Estado 152
+
+   25 escribir: PRIMERO '(' IDENTIFICADOR ')' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 161
+
+
+Estado 153
+
+   26 escribir: ULTIMO '(' IDENTIFICADOR ')' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 162
+
+
+Estado 154
+
+   27 escribir: ENESIMO '(' IDENTIFICADOR ',' . expr ')' saltoLinea
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 163
+
+
+Estado 155
+
+    7 codigo: ESCRIBIR '(' secEscribir ')' ';' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 7 (codigo)
+
+
+Estado 156
+
+   10 codigo: IDENTIFICADOR2 ASIG PRIMERO '(' IDENTIFICADOR ')' . ';' saltoLinea
+
+    ';'  desplazar e ir al estado 164
+
+
+Estado 157
+
+   11 codigo: IDENTIFICADOR2 ASIG ULTIMO '(' IDENTIFICADOR ')' . ';' saltoLinea
+
+    ';'  desplazar e ir al estado 165
+
+
+Estado 158
+
+   12 codigo: IDENTIFICADOR2 ASIG ENESIMO '(' IDENTIFICADOR ',' . expr ')' ';' saltoLinea
+
+    ENTERO          desplazar e ir al estado 42
+    REAL            desplazar e ir al estado 43
+    IDENTIFICADOR2  desplazar e ir al estado 44
+    '-'             desplazar e ir al estado 48
+    '('             desplazar e ir al estado 66
+
+    expr  ir al estado 166
+
+
+Estado 159
+
+   16 parteSi: SI exprBool $@1 saltoLinea '[' saltoLinea . secCodigo ']' saltoLinea
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 3 (secCodigo)
+
+    secCodigo  ir al estado 167
+
+
+Estado 160
+
+    4 secCodigo: secCodigo . codigo
+    5          | secCodigo . condicional
+   19 parteSiNo: SI_NO $@2 '[' saltoLinea secCodigo . ']' saltoLinea
+
+    error           desplazar e ir al estado 33
+    ESCRIBIR        desplazar e ir al estado 34
+    IDENTIFICADOR2  desplazar e ir al estado 35
+    NUEVALINEA      desplazar e ir al estado 37
+    SI              desplazar e ir al estado 38
+    ']'             desplazar e ir al estado 168
+
+    codigo       ir al estado 39
+    condicional  ir al estado 40
+    parteSi      ir al estado 41
+
+
+Estado 161
+
+   25 escribir: PRIMERO '(' IDENTIFICADOR ')' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 25 (escribir)
+
+
+Estado 162
+
+   26 escribir: ULTIMO '(' IDENTIFICADOR ')' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 26 (escribir)
+
+
+Estado 163
+
+   27 escribir: ENESIMO '(' IDENTIFICADOR ',' expr . ')' saltoLinea
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 83
+    '-'  desplazar e ir al estado 84
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+    ')'  desplazar e ir al estado 169
+
+
+Estado 164
+
+   10 codigo: IDENTIFICADOR2 ASIG PRIMERO '(' IDENTIFICADOR ')' ';' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 170
+
+
+Estado 165
+
+   11 codigo: IDENTIFICADOR2 ASIG ULTIMO '(' IDENTIFICADOR ')' ';' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 171
+
+
+Estado 166
+
+   12 codigo: IDENTIFICADOR2 ASIG ENESIMO '(' IDENTIFICADOR ',' expr . ')' ';' saltoLinea
+   66 expr: expr . '+' expr
+   67     | expr . '-' expr
+   68     | expr . '*' expr
+   69     | expr . '/' expr
+   70     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 83
+    '-'  desplazar e ir al estado 84
+    '*'  desplazar e ir al estado 85
+    '/'  desplazar e ir al estado 86
+    '%'  desplazar e ir al estado 87
+    ')'  desplazar e ir al estado 172
+
+
+Estado 167
+
+    4 secCodigo: secCodigo . codigo
+    5          | secCodigo . condicional
+   16 parteSi: SI exprBool $@1 saltoLinea '[' saltoLinea secCodigo . ']' saltoLinea
+
+    error           desplazar e ir al estado 33
+    ESCRIBIR        desplazar e ir al estado 34
+    IDENTIFICADOR2  desplazar e ir al estado 35
+    NUEVALINEA      desplazar e ir al estado 37
+    SI              desplazar e ir al estado 38
+    ']'             desplazar e ir al estado 173
+
+    codigo       ir al estado 39
+    condicional  ir al estado 40
+    parteSi      ir al estado 41
+
+
+Estado 168
+
+   19 parteSiNo: SI_NO $@2 '[' saltoLinea secCodigo ']' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 174
+
+
+Estado 169
+
+   27 escribir: ENESIMO '(' IDENTIFICADOR ',' expr ')' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 175
+
+
+Estado 170
+
+   10 codigo: IDENTIFICADOR2 ASIG PRIMERO '(' IDENTIFICADOR ')' ';' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 10 (codigo)
+
+
+Estado 171
+
+   11 codigo: IDENTIFICADOR2 ASIG ULTIMO '(' IDENTIFICADOR ')' ';' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 11 (codigo)
+
+
+Estado 172
+
+   12 codigo: IDENTIFICADOR2 ASIG ENESIMO '(' IDENTIFICADOR ',' expr ')' . ';' saltoLinea
+
+    ';'  desplazar e ir al estado 176
+
+
+Estado 173
+
+   16 parteSi: SI exprBool $@1 saltoLinea '[' saltoLinea secCodigo ']' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 177
+
+
+Estado 174
+
+   19 parteSiNo: SI_NO $@2 '[' saltoLinea secCodigo ']' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 19 (parteSiNo)
+
+
+Estado 175
+
+   27 escribir: ENESIMO '(' IDENTIFICADOR ',' expr ')' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 27 (escribir)
+
+
+Estado 176
+
+   12 codigo: IDENTIFICADOR2 ASIG ENESIMO '(' IDENTIFICADOR ',' expr ')' ';' . saltoLinea
+
+    $default  reduce usando la regla 73 (saltoLinea)
+
+    saltoLinea  ir al estado 178
+
+
+Estado 177
+
+   16 parteSi: SI exprBool $@1 saltoLinea '[' saltoLinea secCodigo ']' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 16 (parteSi)
+
+
+Estado 178
+
+   12 codigo: IDENTIFICADOR2 ASIG ENESIMO '(' IDENTIFICADOR ',' expr ')' ';' saltoLinea .
+   74 saltoLinea: saltoLinea . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+    $default  reduce usando la regla 12 (codigo)

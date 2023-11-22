@@ -1,0 +1,869 @@
+Terminales no usados en la gramática
+
+   NUMERO
+
+
+Gramática
+
+    0 $accept: entrada $end
+
+    1 entrada: %empty
+    2        | entrada linea
+
+    3 linea: SALIR '\n'
+    4      | error '\n'
+    5      | IDENTIFICADOR ASIG expr '\n'
+    6      | IDENTIFICADOR ASIG exprBool '\n'
+
+    7 exprBool: CIERTO
+    8         | FALSO
+    9         | exprBool IGUAL exprBool
+   10         | exprBool DISTINTO exprBool
+   11         | exprBool Y exprBool
+   12         | exprBool O exprBool
+   13         | NO exprBool
+   14         | expr IGUAL expr
+   15         | expr DISTINTO expr
+   16         | expr '<' expr
+   17         | expr '>' expr
+   18         | expr MENORI expr
+   19         | expr MAYORI expr
+   20         | '(' exprBool ')'
+
+   21 expr: ENTERO
+   22     | REAL
+   23     | expr '+' expr
+   24     | expr '-' expr
+   25     | expr '*' expr
+   26     | expr '/' expr
+   27     | expr '%' expr
+   28     | '(' expr ')'
+   29     | '-' expr
+
+
+Terminales con las reglas donde aparecen
+
+$end (0) 0
+'\n' (10) 3 4 5 6
+'%' (37) 27
+'(' (40) 20 28
+')' (41) 20 28
+'*' (42) 25
+'+' (43) 23
+'-' (45) 24 29
+'/' (47) 26
+'<' (60) 16
+'>' (62) 17
+error (256) 4
+NUMERO (258)
+SALIR (259) 3
+IDENTIFICADOR (260) 5 6
+ENTERO (261) 21
+REAL (262) 22
+ASIG (263) 5 6
+CIERTO (264) 7
+FALSO (265) 8
+MAYORI (266) 19
+MENORI (267) 18
+IGUAL (268) 9 14
+DISTINTO (269) 10 15
+Y (270) 11
+O (271) 12
+NO (272) 13
+menos (273)
+
+
+No terminales con las reglas donde aparecen
+
+$accept (29)
+    en la izquierda: 0
+entrada (30)
+    en la izquierda: 1 2, en la derecha: 0 2
+linea (31)
+    en la izquierda: 3 4 5 6, en la derecha: 2
+exprBool (32)
+    en la izquierda: 7 8 9 10 11 12 13 14 15 16 17 18 19 20, en la derecha:
+    6 9 10 11 12 13 20
+expr (33)
+    en la izquierda: 21 22 23 24 25 26 27 28 29, en la derecha: 5 14
+    15 16 17 18 19 23 24 25 26 27 28 29
+
+
+Estado 0
+
+    0 $accept: . entrada $end
+
+    $default  reduce usando la regla 1 (entrada)
+
+    entrada  ir al estado 1
+
+
+Estado 1
+
+    0 $accept: entrada . $end
+    2 entrada: entrada . linea
+
+    $end           desplazar e ir al estado 2
+    error          desplazar e ir al estado 3
+    SALIR          desplazar e ir al estado 4
+    IDENTIFICADOR  desplazar e ir al estado 5
+
+    linea  ir al estado 6
+
+
+Estado 2
+
+    0 $accept: entrada $end .
+
+    $default  aceptar
+
+
+Estado 3
+
+    4 linea: error . '\n'
+
+    '\n'  desplazar e ir al estado 7
+
+
+Estado 4
+
+    3 linea: SALIR . '\n'
+
+    '\n'  desplazar e ir al estado 8
+
+
+Estado 5
+
+    5 linea: IDENTIFICADOR . ASIG expr '\n'
+    6      | IDENTIFICADOR . ASIG exprBool '\n'
+
+    ASIG  desplazar e ir al estado 9
+
+
+Estado 6
+
+    2 entrada: entrada linea .
+
+    $default  reduce usando la regla 2 (entrada)
+
+
+Estado 7
+
+    4 linea: error '\n' .
+
+    $default  reduce usando la regla 4 (linea)
+
+
+Estado 8
+
+    3 linea: SALIR '\n' .
+
+    $default  reduce usando la regla 3 (linea)
+
+
+Estado 9
+
+    5 linea: IDENTIFICADOR ASIG . expr '\n'
+    6      | IDENTIFICADOR ASIG . exprBool '\n'
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    CIERTO  desplazar e ir al estado 12
+    FALSO   desplazar e ir al estado 13
+    NO      desplazar e ir al estado 14
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 16
+
+    exprBool  ir al estado 17
+    expr      ir al estado 18
+
+
+Estado 10
+
+   21 expr: ENTERO .
+
+    $default  reduce usando la regla 21 (expr)
+
+
+Estado 11
+
+   22 expr: REAL .
+
+    $default  reduce usando la regla 22 (expr)
+
+
+Estado 12
+
+    7 exprBool: CIERTO .
+
+    $default  reduce usando la regla 7 (exprBool)
+
+
+Estado 13
+
+    8 exprBool: FALSO .
+
+    $default  reduce usando la regla 8 (exprBool)
+
+
+Estado 14
+
+   13 exprBool: NO . exprBool
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    CIERTO  desplazar e ir al estado 12
+    FALSO   desplazar e ir al estado 13
+    NO      desplazar e ir al estado 14
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 16
+
+    exprBool  ir al estado 19
+    expr      ir al estado 20
+
+
+Estado 15
+
+   29 expr: '-' . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 22
+
+
+Estado 16
+
+   20 exprBool: '(' . exprBool ')'
+   28 expr: '(' . expr ')'
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    CIERTO  desplazar e ir al estado 12
+    FALSO   desplazar e ir al estado 13
+    NO      desplazar e ir al estado 14
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 16
+
+    exprBool  ir al estado 23
+    expr      ir al estado 24
+
+
+Estado 17
+
+    6 linea: IDENTIFICADOR ASIG exprBool . '\n'
+    9 exprBool: exprBool . IGUAL exprBool
+   10         | exprBool . DISTINTO exprBool
+   11         | exprBool . Y exprBool
+   12         | exprBool . O exprBool
+
+    IGUAL     desplazar e ir al estado 25
+    DISTINTO  desplazar e ir al estado 26
+    Y         desplazar e ir al estado 27
+    O         desplazar e ir al estado 28
+    '\n'      desplazar e ir al estado 29
+
+
+Estado 18
+
+    5 linea: IDENTIFICADOR ASIG expr . '\n'
+   14 exprBool: expr . IGUAL expr
+   15         | expr . DISTINTO expr
+   16         | expr . '<' expr
+   17         | expr . '>' expr
+   18         | expr . MENORI expr
+   19         | expr . MAYORI expr
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    MAYORI    desplazar e ir al estado 30
+    MENORI    desplazar e ir al estado 31
+    IGUAL     desplazar e ir al estado 32
+    DISTINTO  desplazar e ir al estado 33
+    '<'       desplazar e ir al estado 34
+    '>'       desplazar e ir al estado 35
+    '+'       desplazar e ir al estado 36
+    '-'       desplazar e ir al estado 37
+    '*'       desplazar e ir al estado 38
+    '/'       desplazar e ir al estado 39
+    '%'       desplazar e ir al estado 40
+    '\n'      desplazar e ir al estado 41
+
+
+Estado 19
+
+    9 exprBool: exprBool . IGUAL exprBool
+   10         | exprBool . DISTINTO exprBool
+   11         | exprBool . Y exprBool
+   12         | exprBool . O exprBool
+   13         | NO exprBool .
+
+    $default  reduce usando la regla 13 (exprBool)
+
+
+Estado 20
+
+   14 exprBool: expr . IGUAL expr
+   15         | expr . DISTINTO expr
+   16         | expr . '<' expr
+   17         | expr . '>' expr
+   18         | expr . MENORI expr
+   19         | expr . MAYORI expr
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    MAYORI    desplazar e ir al estado 30
+    MENORI    desplazar e ir al estado 31
+    IGUAL     desplazar e ir al estado 32
+    DISTINTO  desplazar e ir al estado 33
+    '<'       desplazar e ir al estado 34
+    '>'       desplazar e ir al estado 35
+    '+'       desplazar e ir al estado 36
+    '-'       desplazar e ir al estado 37
+    '*'       desplazar e ir al estado 38
+    '/'       desplazar e ir al estado 39
+    '%'       desplazar e ir al estado 40
+
+
+Estado 21
+
+   28 expr: '(' . expr ')'
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 42
+
+
+Estado 22
+
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+   29     | '-' expr .
+
+    $default  reduce usando la regla 29 (expr)
+
+
+Estado 23
+
+    9 exprBool: exprBool . IGUAL exprBool
+   10         | exprBool . DISTINTO exprBool
+   11         | exprBool . Y exprBool
+   12         | exprBool . O exprBool
+   20         | '(' exprBool . ')'
+
+    IGUAL     desplazar e ir al estado 25
+    DISTINTO  desplazar e ir al estado 26
+    Y         desplazar e ir al estado 27
+    O         desplazar e ir al estado 28
+    ')'       desplazar e ir al estado 43
+
+
+Estado 24
+
+   14 exprBool: expr . IGUAL expr
+   15         | expr . DISTINTO expr
+   16         | expr . '<' expr
+   17         | expr . '>' expr
+   18         | expr . MENORI expr
+   19         | expr . MAYORI expr
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+   28     | '(' expr . ')'
+
+    MAYORI    desplazar e ir al estado 30
+    MENORI    desplazar e ir al estado 31
+    IGUAL     desplazar e ir al estado 32
+    DISTINTO  desplazar e ir al estado 33
+    '<'       desplazar e ir al estado 34
+    '>'       desplazar e ir al estado 35
+    '+'       desplazar e ir al estado 36
+    '-'       desplazar e ir al estado 37
+    '*'       desplazar e ir al estado 38
+    '/'       desplazar e ir al estado 39
+    '%'       desplazar e ir al estado 40
+    ')'       desplazar e ir al estado 44
+
+
+Estado 25
+
+    9 exprBool: exprBool IGUAL . exprBool
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    CIERTO  desplazar e ir al estado 12
+    FALSO   desplazar e ir al estado 13
+    NO      desplazar e ir al estado 14
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 16
+
+    exprBool  ir al estado 45
+    expr      ir al estado 20
+
+
+Estado 26
+
+   10 exprBool: exprBool DISTINTO . exprBool
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    CIERTO  desplazar e ir al estado 12
+    FALSO   desplazar e ir al estado 13
+    NO      desplazar e ir al estado 14
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 16
+
+    exprBool  ir al estado 46
+    expr      ir al estado 20
+
+
+Estado 27
+
+   11 exprBool: exprBool Y . exprBool
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    CIERTO  desplazar e ir al estado 12
+    FALSO   desplazar e ir al estado 13
+    NO      desplazar e ir al estado 14
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 16
+
+    exprBool  ir al estado 47
+    expr      ir al estado 20
+
+
+Estado 28
+
+   12 exprBool: exprBool O . exprBool
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    CIERTO  desplazar e ir al estado 12
+    FALSO   desplazar e ir al estado 13
+    NO      desplazar e ir al estado 14
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 16
+
+    exprBool  ir al estado 48
+    expr      ir al estado 20
+
+
+Estado 29
+
+    6 linea: IDENTIFICADOR ASIG exprBool '\n' .
+
+    $default  reduce usando la regla 6 (linea)
+
+
+Estado 30
+
+   19 exprBool: expr MAYORI . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 49
+
+
+Estado 31
+
+   18 exprBool: expr MENORI . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 50
+
+
+Estado 32
+
+   14 exprBool: expr IGUAL . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 51
+
+
+Estado 33
+
+   15 exprBool: expr DISTINTO . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 52
+
+
+Estado 34
+
+   16 exprBool: expr '<' . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 53
+
+
+Estado 35
+
+   17 exprBool: expr '>' . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 54
+
+
+Estado 36
+
+   23 expr: expr '+' . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 55
+
+
+Estado 37
+
+   24 expr: expr '-' . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 56
+
+
+Estado 38
+
+   25 expr: expr '*' . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 57
+
+
+Estado 39
+
+   26 expr: expr '/' . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 58
+
+
+Estado 40
+
+   27 expr: expr '%' . expr
+
+    ENTERO  desplazar e ir al estado 10
+    REAL    desplazar e ir al estado 11
+    '-'     desplazar e ir al estado 15
+    '('     desplazar e ir al estado 21
+
+    expr  ir al estado 59
+
+
+Estado 41
+
+    5 linea: IDENTIFICADOR ASIG expr '\n' .
+
+    $default  reduce usando la regla 5 (linea)
+
+
+Estado 42
+
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+   28     | '(' expr . ')'
+
+    '+'  desplazar e ir al estado 36
+    '-'  desplazar e ir al estado 37
+    '*'  desplazar e ir al estado 38
+    '/'  desplazar e ir al estado 39
+    '%'  desplazar e ir al estado 40
+    ')'  desplazar e ir al estado 44
+
+
+Estado 43
+
+   20 exprBool: '(' exprBool ')' .
+
+    $default  reduce usando la regla 20 (exprBool)
+
+
+Estado 44
+
+   28 expr: '(' expr ')' .
+
+    $default  reduce usando la regla 28 (expr)
+
+
+Estado 45
+
+    9 exprBool: exprBool . IGUAL exprBool
+    9         | exprBool IGUAL exprBool .
+   10         | exprBool . DISTINTO exprBool
+   11         | exprBool . Y exprBool
+   12         | exprBool . O exprBool
+
+    $default  reduce usando la regla 9 (exprBool)
+
+
+Estado 46
+
+    9 exprBool: exprBool . IGUAL exprBool
+   10         | exprBool . DISTINTO exprBool
+   10         | exprBool DISTINTO exprBool .
+   11         | exprBool . Y exprBool
+   12         | exprBool . O exprBool
+
+    $default  reduce usando la regla 10 (exprBool)
+
+
+Estado 47
+
+    9 exprBool: exprBool . IGUAL exprBool
+   10         | exprBool . DISTINTO exprBool
+   11         | exprBool . Y exprBool
+   11         | exprBool Y exprBool .
+   12         | exprBool . O exprBool
+
+    IGUAL     desplazar e ir al estado 25
+    DISTINTO  desplazar e ir al estado 26
+
+    $default  reduce usando la regla 11 (exprBool)
+
+
+Estado 48
+
+    9 exprBool: exprBool . IGUAL exprBool
+   10         | exprBool . DISTINTO exprBool
+   11         | exprBool . Y exprBool
+   12         | exprBool . O exprBool
+   12         | exprBool O exprBool .
+
+    IGUAL     desplazar e ir al estado 25
+    DISTINTO  desplazar e ir al estado 26
+    Y         desplazar e ir al estado 27
+
+    $default  reduce usando la regla 12 (exprBool)
+
+
+Estado 49
+
+   19 exprBool: expr MAYORI expr .
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 36
+    '-'  desplazar e ir al estado 37
+    '*'  desplazar e ir al estado 38
+    '/'  desplazar e ir al estado 39
+    '%'  desplazar e ir al estado 40
+
+    $default  reduce usando la regla 19 (exprBool)
+
+
+Estado 50
+
+   18 exprBool: expr MENORI expr .
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 36
+    '-'  desplazar e ir al estado 37
+    '*'  desplazar e ir al estado 38
+    '/'  desplazar e ir al estado 39
+    '%'  desplazar e ir al estado 40
+
+    $default  reduce usando la regla 18 (exprBool)
+
+
+Estado 51
+
+   14 exprBool: expr IGUAL expr .
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 36
+    '-'  desplazar e ir al estado 37
+    '*'  desplazar e ir al estado 38
+    '/'  desplazar e ir al estado 39
+    '%'  desplazar e ir al estado 40
+
+    $default  reduce usando la regla 14 (exprBool)
+
+
+Estado 52
+
+   15 exprBool: expr DISTINTO expr .
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 36
+    '-'  desplazar e ir al estado 37
+    '*'  desplazar e ir al estado 38
+    '/'  desplazar e ir al estado 39
+    '%'  desplazar e ir al estado 40
+
+    $default  reduce usando la regla 15 (exprBool)
+
+
+Estado 53
+
+   16 exprBool: expr '<' expr .
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 36
+    '-'  desplazar e ir al estado 37
+    '*'  desplazar e ir al estado 38
+    '/'  desplazar e ir al estado 39
+    '%'  desplazar e ir al estado 40
+
+    $default  reduce usando la regla 16 (exprBool)
+
+
+Estado 54
+
+   17 exprBool: expr '>' expr .
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    '+'  desplazar e ir al estado 36
+    '-'  desplazar e ir al estado 37
+    '*'  desplazar e ir al estado 38
+    '/'  desplazar e ir al estado 39
+    '%'  desplazar e ir al estado 40
+
+    $default  reduce usando la regla 17 (exprBool)
+
+
+Estado 55
+
+   23 expr: expr . '+' expr
+   23     | expr '+' expr .
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    '*'  desplazar e ir al estado 38
+    '/'  desplazar e ir al estado 39
+    '%'  desplazar e ir al estado 40
+
+    $default  reduce usando la regla 23 (expr)
+
+
+Estado 56
+
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   24     | expr '-' expr .
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    '*'  desplazar e ir al estado 38
+    '/'  desplazar e ir al estado 39
+    '%'  desplazar e ir al estado 40
+
+    $default  reduce usando la regla 24 (expr)
+
+
+Estado 57
+
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   25     | expr '*' expr .
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+
+    $default  reduce usando la regla 25 (expr)
+
+
+Estado 58
+
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   26     | expr '/' expr .
+   27     | expr . '%' expr
+
+    $default  reduce usando la regla 26 (expr)
+
+
+Estado 59
+
+   23 expr: expr . '+' expr
+   24     | expr . '-' expr
+   25     | expr . '*' expr
+   26     | expr . '/' expr
+   27     | expr . '%' expr
+   27     | expr '%' expr .
+
+    $default  reduce usando la regla 27 (expr)

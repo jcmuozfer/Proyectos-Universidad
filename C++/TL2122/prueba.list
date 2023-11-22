@@ -1,0 +1,55 @@
+LISTAS
+
+Numeros = {1, 2, 3, 4, 5}
+Reales = {1.1, 2.1, 3.1, 4.1}
+Dias = {lunes, martes, miercoles, jueves, viernes, sabado, domingo} 
+
+VARIABLES
+
+Entero a;
+Real d;
+Entero aux;
+
+INICIO 
+
+
+# Asignaciones - Expresiones números y bools
+a <- 10 * 4 - 100 / 3 + 3;
+
+d <- 10/3.0;
+
+Escribir("Debe salir 10"); NuevaLinea;
+Escribir (a); 
+Escribir("Debe salir 3.33"); NuevaLinea;
+Escribir(d); NuevaLinea;
+
+Escribir("Dias de la semana"); NuevaLinea;
+Escribir(primero(Dias), enesimo(Dias, 3), enesimo(Dias, 4)); 
+Escribir(enesimo(Dias, 5), enesimo(Dias, 6), ultimo(Dias)); 
+NuevaLinea;
+
+Escribir(enesimo(Numeros, 3), enesimo(Numeros, 4), enesimo(Numeros, 5));
+Escribir( ultimo(Reales), enesimo(Reales, 4));
+NuevaLinea;
+
+
+# Alternativa
+
+aux <- 0;
+	Si ( 1 <= 2) 
+	[
+		Escribir("Este mensaje se debe escribir");
+		NuevaLinea; 
+		aux <- aux + 1;
+
+	]
+	Si_no [
+		Escribir("NO se debe escribir");
+		NuevaLinea; 
+		aux <- aux +5000;
+	]
+
+	Escribir("Valor de aux debe ser 1: ", aux);
+
+FIN
+

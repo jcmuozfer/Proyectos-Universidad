@@ -1,0 +1,468 @@
+[comment encoding = UTF-8 /]
+[module Tarea('http://www.example.org/workflow')]
+[import org::eclipse::acceleo::module::Negocio::main::Formulario /]
+[template public generarTarea(tTarea : Tarea)]
+
+[/template]
+
+[template public generarTarea(tInicio : Inicio)]
+
+[/template]
+
+[template public generarTarea(tFin : Fin)]
+
+[file (tFin.ancestors(Actor).nombre+'/TareaFin.html', false, 'UTF-8')]
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Fin</title>
+ 		<link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+		<h4> Proceso Finalizado!</h4>
+	</body>
+</html>	
+
+[/file]
+[/template]
+
+
+[template public generarTarea(tBorradoBD : BorradoBD)]
+
+
+[file (tBorradoBD.ancestors(Actor).nombre+'/'+tBorradoBD.nombre+'.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tBorradoBD.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+ 	<h2>Tarea Borrar Registro BD:[tBorradoBD.nombre/] </h2>
+ 
+<div class="usuario">
+
+[tBorradoBD.borra.formulario.generarFormulario()/]
+<div class="borrar"> <a href="[tBorradoBD.borra.formulario.nombre+'BorradoBD.html'/]"> Buscar </a> </div>
+</div>
+
+	
+	</body>
+</html>	 	
+[/file]
+
+[file (tBorradoBD.ancestors(Actor).nombre+'/'+tBorradoBD.borra.formulario.nombre+'BorradoBD.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tBorradoBD.borra.formulario.nombre/]</title>
+ 		<link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+	<h2> Tarea Borrar Registro BD:[tBorradoBD.nombre/] </h2>
+	<div><a href="[borra.formulario.nombre+'SBorrado.html'/]"> Borrar Registro 1 </a> </div>
+	<div><a href="[borra.formulario.nombre+'SBorrado.html'/]"> Borrar Registro 2</a> </div>
+	<div><a href="[borra.formulario.nombre+'SBorrado.html'/]"> Borrar Registro 3</a> </div>
+	<div><a href="[borra.formulario.nombre+'SBorrado.html'/]"> Borrar Registro 4</a> </div>
+
+
+	
+	</body>
+</html>	 	
+[/file]
+
+[file (tBorradoBD.ancestors(Actor).nombre+'/'+tBorradoBD.borra.formulario.nombre+'SBorrado.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tBorradoBD.borra.formulario.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+<div class="usuario">
+[tBorradoBD.borra.formulario.generarFormulario()/]
+<a href="[tBorradoBD.borra.formulario.nombre+'BorradoCompleto.html'/]"> Borrar </a>
+</div>
+
+	
+	</body>
+</html>	 	
+[/file]
+
+[file (tBorradoBD.ancestors(Actor).nombre+'/'+tBorradoBD.borra.formulario.nombre+'BorradoCompleto.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tBorradoBD.borra.formulario.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+	<h2> Se ha borrado el registro con exito </h2>
+    <div class="cabecera">
+
+        <div class= "der"><a href="
+			[if saliente.destino.oclIsTypeOf(Usuario)] [ saliente.destino.oclAsType(Usuario).nombre +'.html'/]  [/if] 
+			[if saliente.destino.oclIsTypeOf(Servicio)] [ saliente.destino.oclAsType(Servicio).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(RecepcionMensaje)] [ saliente.destino.oclAsType(RecepcionMensaje).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(EnvioMensaje)] [ saliente.destino.oclAsType(EnvioMensaje).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(ConsultaBD)] [ saliente.destino.oclAsType(ConsultaBD).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(BorradoBD)] [ saliente.destino.oclAsType(BorradoBD).nombre +'.html'/][/if] 
+			[if saliente.destino.oclIsTypeOf(Fin)] [ saliente.destino.oclAsType(Fin) +'.html'/] [/if] 
+        ">Siguiente </a></div>
+    </div>
+	
+	<div> DELETE 
+	FROM [tBorradoBD.borra.formulario.nombre/]; 
+	</div>	
+
+	</body>
+</html>	 	
+[/file]
+
+[/template]
+
+[template public generarTarea(tConsultaBD : ConsultaBD)]
+
+
+[file (tConsultaBD.ancestors(Actor).nombre+'/'+tConsultaBD.nombre+'.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tConsultaBD.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+	<h2>Tarea Consultar Registro BD:[tConsultaBD.nombre/] </h2>
+<div class="usuario">
+[tConsultaBD.consulta.formulario.generarFormulario()/]
+<div class="borrar"><a href="[tConsultaBD.consulta.formulario.nombre+'ConsultaBD.html'/]"> Buscar </a> </div>
+</div>	
+	</body>
+</html>	 	
+[/file]
+
+[file (tConsultaBD.ancestors(Actor).nombre+'/'+tConsultaBD.consulta.formulario.nombre+'ConsultaBD.html', false, 'UTF-8')]
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tConsultaBD.consulta.formulario.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+	<h2>Tarea Consultar Borrar Registro BD:[tConsultaBD.nombre/] </h2>
+
+ <div><a href="[tConsultaBD.consulta.formulario.nombre+'Consulta.html'/]">Consultar Registro 1 </a> </div>
+ <div><a href="[tConsultaBD.consulta.formulario.nombre+'Consulta.html'/]">Consultar Registro 2</a> </div>
+ <div><a href="[tConsultaBD.consulta.formulario.nombre+'Consulta.html'/]">Consultar Registro 3</a> </div>
+ <div><a href="[tConsultaBD.consulta.formulario.nombre+'Consulta.html'/]">Consultar Registro 4</a> </div>
+
+	</body>
+</html>	 	
+[/file]
+
+[file (tConsultaBD.ancestors(Actor).nombre+'/'+tConsultaBD.consulta.formulario.nombre+'Consulta.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tConsultaBD.consulta.formulario.nombre/]</title>
+ 		<link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+<div class="usuario">
+[tConsultaBD.consulta.formulario.generarFormulario()/]
+<a href="[tConsultaBD.consulta.formulario.nombre+'ConsultarCompleto.html'/]"> Consultar</a>
+
+	</div >
+	</body>
+</html>	 	
+[/file]
+
+
+[file (tConsultaBD.ancestors(Actor).nombre+'/'+tConsultaBD.consulta.formulario.nombre+'ConsultarCompleto.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tConsultaBD.consulta.formulario.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+	<h2> Se ha consultado el registro con exito </h2>
+    <div class="cabecera">
+
+        <div class= "der"><a href="
+			[if saliente.destino.oclIsTypeOf(Usuario)] [ saliente.destino.oclAsType(Usuario).nombre +'.html'/]  [/if] 
+			[if saliente.destino.oclIsTypeOf(Servicio)] [ saliente.destino.oclAsType(Servicio).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(RecepcionMensaje)] [ saliente.destino.oclAsType(RecepcionMensaje).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(EnvioMensaje)] [ saliente.destino.oclAsType(EnvioMensaje).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(ConsultaBD)] [ saliente.destino.oclAsType(ConsultaBD).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(BorradoBD)] [ saliente.destino.oclAsType(BorradoBD).nombre +'.html'/][/if] 
+			[if saliente.destino.oclIsTypeOf(Fin)] [ saliente.destino.oclAsType(Fin) +'.html'/] [/if] 
+        ">Siguiente </a></div>
+    </div>
+	
+	<div> SELECT *
+	FROM [tConsultaBD.consulta.formulario.nombre/]; 
+	</div>	
+
+	</body>
+</html>	 	
+[/file]
+
+[/template]
+
+[template public generarTarea(tEnvioMensaje : EnvioMensaje)]
+
+[file (tEnvioMensaje.ancestors(Actor).nombre+'/'+tEnvioMensaje.nombre+'.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tEnvioMensaje.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+		<h2> Tarea Envio Mensaje:[tEnvioMensaje.nombre/] </h2>
+        <div class="cuerpo"> 
+		
+			[if tEnvioMensaje.fichero->size()>0] 
+			<div> Introducir fichero a enviar</div>
+			<input type="file" class="servicio"> Cargar Fichero <br>  
+		[/if]
+		<div> Introducir mensaje a enviar</div>
+		<input type="text">
+		<div class="envio"> <a href="['../'+ancestors(Actor).nombre +'/index.html'/]"> Envio Mensaje </a> </div>
+            </div>
+	
+</body>
+</html>	 	
+[/file]
+tInici
+[/template]
+
+[template public generarTarea(tRecepcionMensaje : RecepcionMensaje)]
+
+[file (tRecepcionMensaje.ancestors(Actor).nombre+'/'+tRecepcionMensaje.nombre+'.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="utf-8">
+		<title> [tRecepcionMensaje.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+		<h2> Tarea Recepcion Mensaje:[tRecepcionMensaje.nombre/] </h2>
+
+    <div class="cabecera">
+
+      
+			[for (recepcion: RecepcionMensaje | tRecepcionMensaje)]
+	 <div><a href="
+					[if recepcion.saliente.destino.oclIsTypeOf(Usuario)] ['../'+recepcion.saliente.destino.ancestors(Actor).nombre + '/'+ recepcion.saliente.destino.oclAsType(Usuario) +'.html'/] ">  [recepcion.saliente.destino.oclAsType(Usuario).nombre/]  [/if] 
+					[if recepcion.saliente.destino.oclIsTypeOf(Servicio)] ['../'+recepcion.saliente.destino.ancestors(Actor).nombre + '/'+ recepcion.saliente.destino.oclAsType(Servicio).nombre +'.html'/]">  [recepcion.saliente.destino.oclAsType(Servicio).nombre/] [/if] 
+					[if recepcion.saliente.destino.oclIsTypeOf(RecepcionMensaje)] ['../'+recepcion.saliente.destino.ancestors(Actor).nombre + '/'+ recepcion.saliente.destino.oclAsType(RecepcionMensaje).nombre +'.html'/]">  [recepcion.saliente.destino.oclAsType(RecepcionMensaje).nombre/]  [/if] 
+					[if recepcion.saliente.destino.oclIsTypeOf(EnvioMensaje)] ['../'+recepcion.saliente.destino.ancestors(Actor).nombre + '/'+ recepcion.saliente.destino.oclAsType(EnvioMensaje).nombre +'.html'/]">  [recepcion.saliente.destino.oclAsType(EnvioMensaje).nombre/]  [/if] 
+					[if recepcion.saliente.destino.oclIsTypeOf(ConsultaBD)] ['../'+recepcion.saliente.destino.ancestors(Actor).nombre + '/'+ recepcion.saliente.destino.oclAsType(ConsultaBD).nombre +'.html'/] ">  [recepcion.saliente.destino.oclAsType(ConsultaBD).nombre/] [/if] 
+					[if recepcion.saliente.destino.oclIsTypeOf(BorradoBD)] ['../'+recepcion.saliente.destino.ancestors(Actor).nombre + '/'+ recepcion.saliente.destino.oclAsType(BorradoBD).nombre +'.html'/]">  [recepcion.saliente.destino.oclAsType(BorradoBD).nombre/] [/if] 
+					[if recepcion.saliente.destino.oclIsTypeOf(Fin)] ['../'+recepcion.saliente.destino.ancestors(Actor).nombre + '/TareaFin.html'/]"> Fin Proceso  [/if] 
+			</a></div>
+			[/for]
+    </div>
+
+
+	
+	</body>
+</html>	 	
+[/file]
+
+[/template]
+
+[template public generarTarea(tUsuario : Usuario)]
+
+[file (tUsuario.ancestors(Actor).nombre+'/'+tUsuario.nombre+'.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>Usuario [tUsuario.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+    <div class="cabecera">
+		
+<div class= "der"><a href="
+			[if saliente.destino.oclIsTypeOf(Usuario)] [ saliente.destino.oclAsType(Usuario).nombre +'.html'/]  [/if] 
+			[if saliente.destino.oclIsTypeOf(Servicio)] [ saliente.destino.oclAsType(Servicio).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(RecepcionMensaje)] [ saliente.destino.oclAsType(RecepcionMensaje).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(EnvioMensaje)] [ saliente.destino.oclAsType(EnvioMensaje).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(ConsultaBD)] [ saliente.destino.oclAsType(ConsultaBD).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(BorradoBD)] [ saliente.destino.oclAsType(BorradoBD).nombre +'.html'/][/if] 
+			[if saliente.destino.oclIsTypeOf(Fin)] [ saliente.destino.oclAsType(Fin) +'.html'/] [/if] 
+        ">Siguiente </a></div>
+    </div>
+
+	<h2> Tarea Usuario:[tUsuario.nombre/] </h2>
+	<div class="usuario">
+	<div> Introduce los datos correspondientes </div>
+		[tUsuario.formulario.generarFormulario()/]
+	</div>
+	</body>
+</html>	 	
+[/file]
+
+[/template]
+
+[template public generarTarea(tServicio : Servicio)]
+
+[file (tServicio.ancestors(Actor).nombre+'/'+tServicio.nombre+'.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tServicio.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+    <div class="cabecera">
+
+        <div class= "der"><a href="
+			[if saliente.destino.oclIsTypeOf(Usuario)] [ saliente.destino.oclAsType(Usuario).nombre +'.html'/]  [/if] 
+			[if saliente.destino.oclIsTypeOf(Servicio)] [ saliente.destino.oclAsType(Servicio).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(RecepcionMensaje)] [ saliente.destino.oclAsType(RecepcionMensaje).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(EnvioMensaje)] [ saliente.destino.oclAsType(EnvioMensaje).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(ConsultaBD)] [ saliente.destino.oclAsType(ConsultaBD).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(BorradoBD)] [ saliente.destino.oclAsType(BorradoBD).nombre +'.html'/][/if] 
+			[if saliente.destino.oclIsTypeOf(Fin)] [ saliente.destino.oclAsType(Fin) +'.html'/] [/if] 
+        ">Siguiente </a></div>
+    </div>
+	<h2> Tarea Servicio:[tServicio.nombre/] </h2>
+
+	[if tServicio.genera->size()>0] 
+			[for (ficheroG: Fichero | tServicio.genera)]
+			<input type="file" class="servicio"> Generamos Fichero <br>  
+			[/for]
+		[/if]
+
+		[if tServicio.lee->size()>0] 
+			[for (ficheroL: Fichero | tServicio.lee)]
+			<input type="file" class="servicio" > Adjuntar Fichero <br> 
+			[/for]
+		[/if]
+
+		[if tServicio.actualiza->size()>0] 
+			<div class="servicio"> <a href="[tServicio.nombre+'ActualizarFichero.html'/]"> Actualizar Fichero </a> </div>
+		[/if]		
+	
+	</body>
+</html>	 	
+[/file]
+
+[file (tServicio.ancestors(Actor).nombre+'/'+tServicio.nombre+'ActualizarFichero.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tServicio.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+	<h2>Tarea Servicio Actualziar Registro BD:[tServicio.nombre/] </h2>
+<div class="usuario">
+[tServicio.actualiza.formulario.generarFormulario()/]
+<div class="borrar"><a href="[tServicio.actualiza.formulario.nombre+'ActualizarFichero1.html'/]"> Buscar </a> </div>
+</div>	
+	</body>
+</html>	 	
+[/file]
+
+[file (tServicio.ancestors(Actor).nombre+'/'+tServicio.actualiza.formulario.nombre+'ActualizarFichero1.html', false, 'UTF-8')]
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tServicio.actualiza.formulario.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+	<h2>Tarea Servicio Actualziar Registro BD:[tServicio.nombre/] </h2>
+
+ <div><a href="[tServicio.actualiza.formulario.nombre+'Actualiza.html'/]">Actualziar Registro 1 </a> </div>
+ <div><a href="[tServicio.actualiza.formulario.nombre+'Actualiza.html'/]">Actualziar Registro 2</a> </div>
+ <div><a href="[tServicio.actualiza.formulario.nombre+'Actualiza.html'/]">Actualziar Registro 3</a> </div>
+ <div><a href="[tServicio.actualiza.formulario.nombre+'Actualiza.html'/]">Actualziar Registro 4</a> </div>
+
+	</body>
+</html>	 	
+[/file]
+
+[file (tServicio.ancestors(Actor).nombre+'/'+tServicio.actualiza.formulario.nombre+'Actualiza.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tServicio.actualiza.formulario.nombre/]</title>
+ 		<link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+<div class="usuario">
+[tServicio.actualiza.formulario.generarFormulario()/]
+<a href="[tServicio.actualiza.formulario.nombre+'ActualizarCompletado.html'/]"> Actualizar</a>
+
+	</div >
+	</body>
+</html>	 	
+[/file]
+
+
+[file (tServicio.ancestors(Actor).nombre+'/'+tServicio.actualiza.formulario.nombre+'ActualizarCompletado.html', false, 'UTF-8')]
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title> [tServicio.actualiza.formulario.nombre/]</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+
+	<h2> Se ha actualizado el registro con exito </h2>
+    <div class="cabecera">
+
+        <div class= "der"><a href="
+			[if saliente.destino.oclIsTypeOf(Usuario)] [ saliente.destino.oclAsType(Usuario).nombre +'.html'/]  [/if] 
+			[if saliente.destino.oclIsTypeOf(Servicio)] [ saliente.destino.oclAsType(Servicio).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(RecepcionMensaje)] [ saliente.destino.oclAsType(RecepcionMensaje).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(EnvioMensaje)] [ saliente.destino.oclAsType(EnvioMensaje).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(ConsultaBD)] [ saliente.destino.oclAsType(ConsultaBD).nombre +'.html'/] [/if] 
+			[if saliente.destino.oclIsTypeOf(BorradoBD)] [ saliente.destino.oclAsType(BorradoBD).nombre +'.html'/][/if] 
+			[if saliente.destino.oclIsTypeOf(Fin)] [ saliente.destino.oclAsType(Fin) +'.html'/] [/if] 
+        ">Siguiente </a></div>
+    </div>
+	
+	<div> UPDATE [tServicio.actualiza.formulario.nombre/] SET  Edad = '10', ¿Empleo?= 'true',Nombre = 'Juan',Sexo = 'Masculino'; 
+	</div>	
+
+	</body>
+</html>	 	
+[/file]
+
+[/template]

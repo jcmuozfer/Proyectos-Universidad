@@ -1,0 +1,35 @@
+[comment encoding = UTF-8 /]
+[module Tabla('http://www.example.org/workflow')]
+
+
+[template public generarTabla(t : Tabla)]
+
+CREATE TABLE  [t.nombre/] (
+
+[t.nombre/] PRIMARY KEY,
+
+[for (campo: Campo | t.formulario.campo) separator(',') ]
+
+[if campo.oclIsTypeOf(Enteros) ] [campo.nombre/] NUMERIC (30,3) [/if]
+[if campo.oclIsTypeOf(Booleanos) ] [campo.nombre/] BOOLEAN [/if]
+[if campo.oclIsTypeOf(Strings)] [campo.nombre/] VARCHAR2(20) [/if]
+[if campo.oclIsTypeOf(Listas)] [campo.nombre/] FOREIG KEY (numgest) 
+REFERENCES [campo.nombre/] (['lista_'+campo.nombre/])
+ON DELETE SET NULL
+[ /if]
+
+[/for]
+
+);
+
+[for (lista: Listas | t.formulario.campo->selectByType(Listas)) separator(',') ]
+CREATE TABLE ['lista_'+lista.nombre/] (
+
+	[lista.nombre/] PRIMARY KEY,
+	[for (valor : Valor |lista.valor)separator(',')]
+	[valor.nombre/] VARCHAR2(20)
+	[/for]
+	);
+ [/for]
+
+[/template]

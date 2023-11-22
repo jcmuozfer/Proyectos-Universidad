@@ -1,0 +1,58 @@
+
+
+
+<div class="registro" data-ng-controller="perfilCtrl as perfil">
+	<form class="form-login" novalidate>
+		<h1>Modificar Perfil de Airbnb</h1>
+		<br>
+
+
+		<h2>Bienvenido,{{perfil.usuario.username}}</h2>
+
+			<div class="text">Introduce el nuevo usuario que desees tener</div>
+			<div>
+				<input name="usuario" placeholder={{perfil.usuario.username}}
+					class="correo" data-ng-model="usuario.username">
+			</div>
+
+
+			<div class="text">Introduce el nuevo correo que quieras asignar
+				al usuario</div>
+			<div>
+				<input data-ng-model="usuario.email" name="correo"
+					placeholder="{{perfil.usuario.email}}" class="correo">
+			</div>
+			<div class="text">Introduce la nueva contraseña que quieras
+				asignar al usuario</div>
+
+
+			<div>
+				<input data-ng-model="usuario.password" name="contra1"
+					class="correo" type="password" placeholder=" Modificar Contraseña">
+			</div>
+			
+			<div class="text">Repite la contraseña</div>
+
+
+			<div>
+				<input data-ng-model="usuario.password2" name="contra1"
+					class="correo" type="password" placeholder=" Modificar Contraseña">
+			</div>
+
+			<div class="error">{{perfil.mensajeError}}</div>
+
+
+			<div class="text">
+				Al seleccionar <b> Aceptar y continuar </b>, modificaras los
+				parámetros que hayas modificado
+			</div>
+			<div> <input class="buttons" type="submit" data-ng-click="editarUsuario()"
+				data-ng-href="../LogoutServlet" value="Aceptar y continuar" />
+</div>
+				<a class="buttons" data-ng-href="#!/GestionAlojamientos">Gestión de Alojamientos </a>
+				<a class="buttons" data-ng-href="#!/GestionCategorias">Gestión de Categorias </a>				
+				<a class="cerrar" href="../LogoutServlet">Cerrar Sesión </a>
+				<a class="eliminar" data-ng-href="#!/EliminarUsuario">Eliminar Usuario </a>
+	</form>
+</div>
+

@@ -1,0 +1,33 @@
+[comment encoding = UTF-8 /]
+[module Formulario('http://www.example.org/workflow')]
+
+
+[template public generarFormulario(aFormulario : Formulario)]
+
+
+<form>
+
+[for(c: Campo | aFormulario.campo)]
+<h5>[c.nombre/] </h5>
+[if (c.oclIsTypeOf(Enteros))] 
+	<input type="number" >
+[/if]
+[if (c.oclIsTypeOf(Booleanos))] 
+		<div >
+				<input type="radio"> Si
+				<input type="radio" >No
+		</div>
+[/if]
+[if (c.oclIsTypeOf(String))] 
+	<input type="text" >
+[/if]
+[if (c.oclIsTypeOf(Listas))] 
+		<select >
+		[for (v: Valor | c->selectByType(Listas).valor)]
+		<option> [v.nombre/] </opcion>
+		[/for]
+		</select>
+[/if]
+[/for]
+</form>
+[/template]

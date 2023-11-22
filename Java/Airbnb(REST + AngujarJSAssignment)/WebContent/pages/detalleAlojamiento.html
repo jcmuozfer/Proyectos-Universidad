@@ -1,0 +1,53 @@
+
+<div class="fondoAlojamiento">
+
+
+	<div class="Titulo">
+		<a href="#!/" class="flecha"> <input type="image"
+			src="../img/imgDetalles/atras.png">
+		</a>
+		<h2>{{alojamientoCat.alojamientoID.title}}</h2>
+	</div>
+
+
+	<div class="encabezado">
+		<div>
+			<img class="exclamacion" src="../img/imgDetalles/exclamacion.png" alt=""> 
+				 {{alojamientoCat.alojamientoID.location}}
+		</div>
+		<div>
+
+			<input class="corazon" type="image" data-ng-click="modificarMegusta()"
+				src="{{alojamientoCat.alojamientoID.meGusta}}" alt=" "> Me
+			gustas Totales: {{alojamientoCat.alojamientoID.likes}} <input
+				type="hidden" name="idHosting"
+				value="{{alojamientoCat.alojamientoID.id}}"> <input
+				type="hidden" name="meGusta" value="meGusta">
+		</div>
+	</div>
+
+	<div class="cuerpo" id="detalleAlojamiento">
+	{{alojamientoCat.alojamientoID.description}}
+
+	</div>
+	<h5 class="h5Relacioandos"> Alojamientos relacionados: </h5>
+	<div class="alojamientoRelacionado">  
+		
+		<div data-ng-repeat="Hosting in alojamientoCat.alojamientosRelacionados">
+
+
+			<div>
+				<div>
+					<b>{{ Hosting.title }}</b>({{ Hosting.location }})
+				</div>
+				<div>Numero de Me Gustas: {{ Hosting.likes }}</div>
+				<a class="botonAlojamiento"
+					data-ng-href="#!/InfomacionAlojamiento/{{Hosting.id}}">Más
+					Información </a>
+			</div>
+		</div>
+	
+	
+	</div>
+</div>
+

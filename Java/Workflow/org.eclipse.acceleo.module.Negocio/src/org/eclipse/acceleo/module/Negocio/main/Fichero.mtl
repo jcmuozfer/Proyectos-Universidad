@@ -1,0 +1,9 @@
+[comment encoding = UTF-8 /]
+[module Fichero('http://www.example.org/workflow')]
+
+
+[template public Fichero(aFichero : Fichero)]
+[file (aFichero.ancestors(Actor).nombre+'/'+aFichero.nombre+'.txt', false, 'UTF-8')]
+Nombre de fichero: [aFichero.nombre/]
+[/file]
+[/template]

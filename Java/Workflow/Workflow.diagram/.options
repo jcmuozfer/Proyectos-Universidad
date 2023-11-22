@@ -1,0 +1,7 @@
+# Tracing options for the Workflow.diagram plug-in
+
+# Common issues
+Workflow.diagram/debug=false
+
+# Visual IDs
+Workflow.diagram/debug/visualID=false

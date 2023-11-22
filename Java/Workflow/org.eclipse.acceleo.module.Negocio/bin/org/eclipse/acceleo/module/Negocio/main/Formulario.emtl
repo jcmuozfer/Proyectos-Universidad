@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/3.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
+  <mtl:Module name="Formulario" nsURI="org::eclipse::acceleo::module::Negocio::main::Formulario" startHeaderPosition="29" endHeaderPosition="207">
+    <input>
+      <takesTypesFrom href="http://www.example.org/workflow#/"/>
+    </input>
+    <ownedModuleElement xsi:type="mtl:Template" name="generarFormulario" visibility="Public">
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;&#xA;&lt;form>&#xA;&#xA;"/>
+      <body xsi:type="mtl:ForBlock">
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;h5>"/>
+        <body xsi:type="ocl.ecore:PropertyCallExp">
+          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+          <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generarFormulario/%.1/c">
+            <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+          </source>
+          <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/workflow#//Campo/nombre"/>
+        </body>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" &lt;/h5>&#xA;"/>
+        <body xsi:type="mtl:IfBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&lt;input type=&quot;number&quot; >&#xA;"/>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generarFormulario/%.1/c">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/10/Enteros">
+              <referredType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Enteros"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+          </ifExpr>
+        </body>
+        <body xsi:type="mtl:IfBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&lt;div >&#xA;&#x9;&#x9;&#x9;&#x9;&lt;input type=&quot;radio&quot;> Si&#xA;&#x9;&#x9;&#x9;&#x9;&lt;input type=&quot;radio&quot; >No&#xA;&#x9;&#x9;&lt;/div>&#xA;"/>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generarFormulario/%.1/c">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/10/Booleanos">
+              <referredType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Booleanos"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+          </ifExpr>
+        </body>
+        <body xsi:type="mtl:IfBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&lt;input type=&quot;text&quot; >&#xA;"/>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generarFormulario/%.1/c">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/10/String">
+              <referredType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+          </ifExpr>
+        </body>
+        <body xsi:type="mtl:IfBlock">
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&lt;select >&#xA;"/>
+          <body xsi:type="mtl:ForBlock">
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&lt;option> "/>
+            <body xsi:type="ocl.ecore:PropertyCallExp">
+              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+              <source xsi:type="ocl.ecore:VariableExp" name="v" referredVariable="/0/generarFormulario/%.1/%.6/%.1/v">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Valor"/>
+              </source>
+              <referredProperty xsi:type="ecore:EAttribute" href="http://www.example.org/workflow#//Valor/nombre"/>
+            </body>
+            <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" &lt;/opcion>&#xA;"/>
+            <loopVariable name="v">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Valor"/>
+            </loopVariable>
+            <iterSet xsi:type="ocl.ecore:IteratorExp" name="collect" eType="/6/Bag(Valor)">
+              <source xsi:type="ocl.ecore:OperationCallExp" eType="/6/Set(Listas)">
+                <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="/6/Set(Campo)">
+                  <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL/Annotations">
+                    <details key="IMPLICIT_SET_CONVERSION" value="true"/>
+                  </eAnnotations>
+                  <part xsi:type="ocl.ecore:CollectionItem">
+                    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+                    <item xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generarFormulario/%.1/c">
+                      <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+                    </item>
+                  </part>
+                </source>
+                <argument xsi:type="ocl.ecore:TypeExp" eType="/10/Listas">
+                  <referredType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Listas"/>
+                </argument>
+                <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/selectByType"/>
+              </source>
+              <body xsi:type="ocl.ecore:PropertyCallExp" eType="/6/OrderedSet(Valor)">
+                <source xsi:type="ocl.ecore:VariableExp" name="temp1" referredVariable="/0/generarFormulario/%.1/%.6/%.1/collect/temp1">
+                  <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Listas"/>
+                </source>
+                <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/workflow#//Listas/valor"/>
+              </body>
+              <iterator xsi:type="ocl.ecore:Variable" name="temp1">
+                <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Listas"/>
+              </iterator>
+            </iterSet>
+          </body>
+          <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#x9;&#x9;&lt;/select>&#xA;"/>
+          <ifExpr xsi:type="ocl.ecore:OperationCallExp">
+            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
+            <source xsi:type="ocl.ecore:VariableExp" name="c" referredVariable="/0/generarFormulario/%.1/c">
+              <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+            </source>
+            <argument xsi:type="ocl.ecore:TypeExp" eType="/10/Listas">
+              <referredType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Listas"/>
+            </argument>
+            <referredOperation xsi:type="ecore:EOperation" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsTypeOf"/>
+          </ifExpr>
+        </body>
+        <loopVariable name="c">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+        </loopVariable>
+        <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/6/OrderedSet(Campo)">
+          <source xsi:type="ocl.ecore:VariableExp" name="aFormulario" referredVariable="/0/generarFormulario/aFormulario">
+            <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Formulario"/>
+          </source>
+          <referredProperty xsi:type="ecore:EReference" href="http://www.example.org/workflow#//Formulario/campo"/>
+        </iterSet>
+      </body>
+      <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&lt;/form>"/>
+      <parameter name="aFormulario">
+        <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Formulario"/>
+      </parameter>
+    </ownedModuleElement>
+  </mtl:Module>
+  <ecore:EPackage name="additions">
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_String_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Integer_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Real_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Real"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ecore_EObject_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      </eAnnotations>
+      <eOperations name="generarFormulario">
+        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+          <contents xsi:type="ocl.ecore:Constraint"/>
+        </eAnnotations>
+        <eAnnotations source="MTL" references="/0/generarFormulario"/>
+        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+        <eParameters name="aFormulario">
+          <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Formulario"/>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OclAny_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Collection(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Collection(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_Sequence(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Sequence(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="oclstdlib_OrderedSet(T)_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)"/>
+      </eAnnotations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="workflow_Formulario_Class">
+      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
+        <references href="http://www.example.org/workflow#//Formulario"/>
+      </eAnnotations>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Formulario"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Formulario"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="collections">
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Campo)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Campo)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(Listas)" instanceClassName="java.util.Set">
+      <elementType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Listas"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Valor)" instanceClassName="java.util.LinkedHashSet">
+      <elementType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Valor"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:BagType" name="Bag(Valor)" instanceClassName="org.eclipse.ocl.util.Bag">
+      <elementType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Valor"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Formulario"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+  </ocl.ecore:Variable>
+  <ecore:EPackage name="types">
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="Enteros">
+      <referredType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Enteros"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="Booleanos">
+      <referredType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Booleanos"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="String">
+      <referredType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ocl.ecore:TypeType" name="Listas">
+      <referredType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Listas"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Valor"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Valor"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Campo"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.example.org/workflow#//Formulario"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="i">
+    <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ecore:EAnnotation source="positions">
+    <eAnnotations source="positions.0" references="/0/generarFormulario">
+      <details key="start" value="86"/>
+      <details key="end" value="627"/>
+      <details key="line" value="5"/>
+    </eAnnotations>
+    <eAnnotations source="positions.1" references="/0/generarFormulario/%">
+      <details key="start" value="148"/>
+      <details key="end" value="158"/>
+      <details key="line" value="6"/>
+    </eAnnotations>
+    <eAnnotations source="positions.2" references="/0/generarFormulario/%.1">
+      <details key="start" value="158"/>
+      <details key="end" value="607"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.3" references="/0/generarFormulario/%.1/%">
+      <details key="start" value="194"/>
+      <details key="end" value="198"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.4" references="/0/generarFormulario/%.1/%.1">
+      <details key="start" value="199"/>
+      <details key="end" value="207"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.5" references="/0/generarFormulario/%.1/%.1/c">
+      <details key="start" value="199"/>
+      <details key="end" value="200"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.6" references="/0/generarFormulario/%.1/%.2">
+      <details key="start" value="209"/>
+      <details key="end" value="216"/>
+      <details key="line" value="11"/>
+    </eAnnotations>
+    <eAnnotations source="positions.7" references="/0/generarFormulario/%.1/%.3">
+      <details key="start" value="216"/>
+      <details key="end" value="276"/>
+      <details key="line" value="12"/>
+    </eAnnotations>
+    <eAnnotations source="positions.8" references="/0/generarFormulario/%.1/%.3/%">
+      <details key="start" value="247"/>
+      <details key="end" value="271"/>
+      <details key="line" value="12"/>
+    </eAnnotations>
+    <eAnnotations source="positions.9" references="/0/generarFormulario/%.1/%.3/%.1">
+      <details key="start" value="220"/>
+      <details key="end" value="244"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.10" references="/0/generarFormulario/%.1/%.3/%.1/c">
+      <details key="start" value="221"/>
+      <details key="end" value="222"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.11" references="/0/generarFormulario/%.1/%.3/%.1/%">
+      <details key="start" value="235"/>
+      <details key="end" value="242"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.12" references="/0/generarFormulario/%.1/%.4">
+      <details key="start" value="277"/>
+      <details key="end" value="389"/>
+      <details key="line" value="15"/>
+    </eAnnotations>
+    <eAnnotations source="positions.13" references="/0/generarFormulario/%.1/%.4/%">
+      <details key="start" value="310"/>
+      <details key="end" value="384"/>
+      <details key="line" value="15"/>
+    </eAnnotations>
+    <eAnnotations source="positions.14" references="/0/generarFormulario/%.1/%.4/%.1">
+      <details key="start" value="281"/>
+      <details key="end" value="307"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.15" references="/0/generarFormulario/%.1/%.4/%.1/c">
+      <details key="start" value="282"/>
+      <details key="end" value="283"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.16" references="/0/generarFormulario/%.1/%.4/%.1/%">
+      <details key="start" value="296"/>
+      <details key="end" value="305"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.17" references="/0/generarFormulario/%.1/%.5">
+      <details key="start" value="390"/>
+      <details key="end" value="447"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.18" references="/0/generarFormulario/%.1/%.5/%">
+      <details key="start" value="420"/>
+      <details key="end" value="442"/>
+      <details key="line" value="21"/>
+    </eAnnotations>
+    <eAnnotations source="positions.19" references="/0/generarFormulario/%.1/%.5/%.1">
+      <details key="start" value="394"/>
+      <details key="end" value="417"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.20" references="/0/generarFormulario/%.1/%.5/%.1/c">
+      <details key="start" value="395"/>
+      <details key="end" value="396"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.21" references="/0/generarFormulario/%.1/%.5/%.1/%">
+      <details key="start" value="409"/>
+      <details key="end" value="415"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.22" references="/0/generarFormulario/%.1/%.6">
+      <details key="start" value="448"/>
+      <details key="end" value="600"/>
+      <details key="line" value="24"/>
+    </eAnnotations>
+    <eAnnotations source="positions.23" references="/0/generarFormulario/%.1/%.6/%">
+      <details key="start" value="478"/>
+      <details key="end" value="490"/>
+      <details key="line" value="24"/>
+    </eAnnotations>
+    <eAnnotations source="positions.24" references="/0/generarFormulario/%.1/%.6/%.1">
+      <details key="start" value="492"/>
+      <details key="end" value="582"/>
+      <details key="line" value="26"/>
+    </eAnnotations>
+    <eAnnotations source="positions.25" references="/0/generarFormulario/%.1/%.6/%.1/%">
+      <details key="start" value="541"/>
+      <details key="end" value="552"/>
+      <details key="line" value="27"/>
+    </eAnnotations>
+    <eAnnotations source="positions.26" references="/0/generarFormulario/%.1/%.6/%.1/%.1">
+      <details key="start" value="553"/>
+      <details key="end" value="561"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.27" references="/0/generarFormulario/%.1/%.6/%.1/%.1/v">
+      <details key="start" value="553"/>
+      <details key="end" value="554"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.28" references="/0/generarFormulario/%.1/%.6/%.1/%.2">
+      <details key="start" value="563"/>
+      <details key="end" value="574"/>
+      <details key="line" value="27"/>
+    </eAnnotations>
+    <eAnnotations source="positions.29" references="/0/generarFormulario/%.1/%.6/%.1/v">
+      <details key="start" value="498"/>
+      <details key="end" value="506"/>
+      <details key="line" value="26"/>
+    </eAnnotations>
+    <eAnnotations source="positions.30" references="/0/generarFormulario/%.1/%.6/%.1/collect">
+      <details key="start" value="509"/>
+      <details key="end" value="538"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.31" references="/0/generarFormulario/%.1/%.6/%.1/collect/%">
+      <details key="start" value="509"/>
+      <details key="end" value="532"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.32" references="/0/generarFormulario/%.1/%.6/%.1/collect/%/%">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.33" references="/0/generarFormulario/%.1/%.6/%.1/collect/%/%/%/c">
+      <details key="start" value="509"/>
+      <details key="end" value="510"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.34" references="/0/generarFormulario/%.1/%.6/%.1/collect/%/%.1">
+      <details key="start" value="525"/>
+      <details key="end" value="531"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.35" references="/0/generarFormulario/%.1/%.6/%.1/collect/%.1">
+      <details key="start" value="533"/>
+      <details key="end" value="538"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.36" references="/0/generarFormulario/%.1/%.6/%.1/collect/%.1/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.37" references="/0/generarFormulario/%.1/%.6/%.1/collect/temp1">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.38" references="/0/generarFormulario/%.1/%.6/%.2">
+      <details key="start" value="583"/>
+      <details key="end" value="595"/>
+      <details key="line" value="29"/>
+    </eAnnotations>
+    <eAnnotations source="positions.39" references="/0/generarFormulario/%.1/%.6/%.3">
+      <details key="start" value="452"/>
+      <details key="end" value="475"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.40" references="/0/generarFormulario/%.1/%.6/%.3/c">
+      <details key="start" value="453"/>
+      <details key="end" value="454"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.41" references="/0/generarFormulario/%.1/%.6/%.3/%">
+      <details key="start" value="467"/>
+      <details key="end" value="473"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.42" references="/0/generarFormulario/%.1/c">
+      <details key="start" value="163"/>
+      <details key="end" value="171"/>
+      <details key="line" value="10"/>
+    </eAnnotations>
+    <eAnnotations source="positions.43" references="/0/generarFormulario/%.1/%.7">
+      <details key="start" value="174"/>
+      <details key="end" value="191"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.44" references="/0/generarFormulario/%.1/%.7/aFormulario">
+      <details key="start" value="174"/>
+      <details key="end" value="185"/>
+      <details key="line" value="0"/>
+    </eAnnotations>
+    <eAnnotations source="positions.45" references="/0/generarFormulario/%.2">
+      <details key="start" value="608"/>
+      <details key="end" value="615"/>
+      <details key="line" value="32"/>
+    </eAnnotations>
+    <eAnnotations source="positions.46" references="/0/generarFormulario/aFormulario">
+      <details key="start" value="121"/>
+      <details key="end" value="145"/>
+      <details key="line" value="5"/>
+    </eAnnotations>
+  </ecore:EAnnotation>
+</xmi:XMI>

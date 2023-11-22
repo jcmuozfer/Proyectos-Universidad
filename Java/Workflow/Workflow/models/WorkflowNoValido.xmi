@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow:Workflow
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:workflow="http://www.example.org/workflow"
+    nombre="noValido">
+  <basedatos
+      nombre="BD">
+    <tabla nombre="Paco"
+        formulario="Formulario1"/>
+  </basedatos>
+  <actor nombre="Paco">
+    <tarea xsi:type="workflow:Inicio"
+        saliente="InicioInicio"/>
+    <tarea xsi:type="workflow:Inicio"
+        entrante="InicioInicio"/>
+    <tarea xsi:type="workflow:Fin"
+        entrante="FinFin"/>
+    <tarea xsi:type="workflow:Fin"
+        saliente="FinFin"/>
+    <enlace
+        destino="//@actor.0/@tarea.2"
+        origen="//@actor.0/@tarea.3"
+        nombre="FinFin"/>
+    <enlace
+        destino="//@actor.0/@tarea.1"
+        origen="//@actor.0/@tarea.0"
+        nombre="InicioInicio"/>
+  </actor>
+  <actor nombre="Alfonso">
+    <formulario
+        nombre="Formulario1"
+        insertar="Paco">
+      <campo
+          xsi:type="workflow:Enteros"
+          nombre="Numero"/>
+    </formulario>
+    <tarea xsi:type="workflow:Servicio"
+        entrante="Enlacee"
+        saliente="Enlacee"
+        descripcion="Servicio"
+        nombre="Servicio"
+        actualiza="Paco"/>
+    <tarea xsi:type="workflow:EnvioMensaje"
+        entrante="Aux"
+        saliente="EnvioRecepcion"
+        descripcion="Envio"
+        nombre="Envio"/>
+    <tarea xsi:type="workflow:RecepcionMensaje"
+        entrante="EnvioRecepcion"
+        saliente="RecepcionRecepcion"
+        descripcion="Recepcion"
+        nombre="Recepcion"
+        codificacion="XML"/>
+    <tarea xsi:type="workflow:RecepcionMensaje"
+        entrante="RecepcionRecepcion"
+        saliente="Aux"
+        descripcion="Recepcion2"
+        nombre="Recepcion2"/>
+    <enlace
+        destino="Servicio"
+        origen="Servicio"
+        nombre="Enlacee"/>
+    <enlace
+        destino="Recepcion"
+        origen="Envio"
+        nombre="EnvioRecepcion"/>
+    <enlace
+        destino="Recepcion2"
+        origen="Recepcion"
+        nombre="RecepcionRecepcion"/>
+    <enlace
+        destino="Envio"
+        origen="Recepcion2"
+        nombre="Aux"/>
+  </actor>
+</workflow:Workflow>

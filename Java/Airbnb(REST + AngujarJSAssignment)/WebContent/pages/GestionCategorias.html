@@ -1,0 +1,67 @@
+
+<div class="registro">
+	<form class="form-login" novalidate>
+		<h1>Gestión Categorías de Airbnb</h1>
+		<br>
+
+		<div class="error">{{categoriaIn.mensajeError}}</div>
+
+		<div class="text">Introduce el nombre de la nueva categoría que
+			se desea crear</div>
+		<div>
+			<input type="text" data-ng-model="categoria.name"
+				placeholder="Nombre Categoría" class="correo">
+		</div>
+		<div class="text">Introduce la descripción de la nueva categoría
+			que se desea crear</div>
+		<div>
+			<input type="text" data-ng-model="categoria.description"
+				placeholder="Descripción categoria" class="correo">
+		</div>
+
+		<input class="buttons" type="submit" data-ng-click="crearCategoria()"
+			value="Crear Categoria" />
+
+
+
+		<div class="text">Indica la categoría que se desea modificar</div>
+		<select data-ng-model="categoriaModifica.id" class="correo">
+			<option data-ng-repeat="categoria in categoriaIn.categorias "
+				value="{{categoria.id}}">{{categoria.name}}</option>
+		</select>
+
+
+		<div class="text">Introduce el nuevo nombre de la categoría</div>
+		<div>
+			<input type="text" data-ng-model="categoriaModifica.name"
+				placeholder="Nombre de la Categoria" class="correo">
+		</div>
+		<div class="text">>Introduce la nueva descripción de la
+			categoría</div>
+		<div>
+			<input type="text" data-ng-model="categoriaModifica.description"
+				placeholder="Descripción Categoría" class="correo">
+		</div>
+		
+		<input class="buttons" type="submit" data-ng-click="actualizarCategoria()"
+			value="Modificar Categoria" />
+			
+			
+		<div class="text"> Seleciona la categoria que desees eliminar:</div>
+		
+		<select data-ng-model="categoriaEliminar" class="correo">
+			<option data-ng-repeat="categoria in categoriaIn.categorias "
+				value="{{categoria.id}}">{{categoria.name}}</option>
+		</select>
+		
+		<input class="cerrar" type="submit" data-ng-click="eliminarCategoria()"
+			value="Eliminar Categoria" />
+
+
+<a class="buttons"
+			data-ng-href="#!/Perfil">Atrás</a>
+
+	</form>
+
+
+</div>

@@ -1,0 +1,84 @@
+<div class="cabeceraMenu">
+	<nav>
+		<div class="filtros">
+
+
+			<ul>
+				<li>Ordenar
+					<ul>
+						Número me gustas:
+						<select class="correo" id="ordenar"
+							onchange="ordenarAlojamientos()">
+							<option value="">Por favor seleciona una</option>														
+							<option value="1">Más me gustas</option>
+							<option value="0">Menos me gustas</option>
+						</select>
+
+
+					</ul>
+				</li>
+				<li>Filtro
+					<ul>
+						Disponibilidad:
+						<select class="correo" id="disponible"
+							onchange="disponibilidadAlojamientos()">
+							<option value="">Por favor seleciona una</option>							
+							<option value="2">Todos</option>
+							<option value="1">Disponible</option>
+							<option value="0">Reservado</option>
+						</select> Categoria:
+						<select class="correo" id="categoriaID"
+							onchange="categoriasdAlojamientos()" >
+							<option value="">Por favor seleciona una</option>														
+						<option data-ng-repeat="categoria in alojamientoCat.categorias "
+				value="{{categoria.id}}">{{categoria.name}}</option>
+							
+						</select>
+						
+
+ 
+		</select>
+
+
+
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="buscador">
+			<input class="buscar" type="search" name="bus"
+				data-ng-model=" buscar"> <input class="botonBuscar"
+				type="submit" name="bus" value="Buscar"
+				data-ng-click=" buscarAlojamiento()">
+		</div>
+
+
+
+	</nav>
+</div>
+<div class="fondo">
+
+	<div class="cuerpo">
+
+		<div class="info"
+			data-ng-repeat="Hosting in alojamientoCat.alojamientos">
+
+
+			<div>
+				<div>
+					<b>{{ Hosting.title }}</b>({{ Hosting.location }})
+				</div>
+				<div>Numero de Me Gustas: {{ Hosting.likes }}</div>
+			</div>
+			<div>
+				<div>Contacto: {{ Hosting.telephone }}, {{
+					Hosting.contactEmail }}</div>
+
+				<a class="botonAlojamiento"
+					data-ng-href="#!/InfomacionAlojamiento/{{Hosting.id}}">Más
+					Información </a>
+
+			</div>
+		</div>
+	</div>
+</div>

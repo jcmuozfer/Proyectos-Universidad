@@ -1,0 +1,376 @@
+/**
+ */
+package workflow.impl;
+
+import java.lang.String;
+
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+import workflow.Actor;
+import workflow.Enlace;
+import workflow.Fichero;
+import workflow.Formulario;
+import workflow.Tarea;
+import workflow.WorkflowPackage;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Actor</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link workflow.impl.ActorImpl#getFichero <em>Fichero</em>}</li>
+ *   <li>{@link workflow.impl.ActorImpl#getFormulario <em>Formulario</em>}</li>
+ *   <li>{@link workflow.impl.ActorImpl#getTarea <em>Tarea</em>}</li>
+ *   <li>{@link workflow.impl.ActorImpl#getEnlace <em>Enlace</em>}</li>
+ *   <li>{@link workflow.impl.ActorImpl#getNombre <em>Nombre</em>}</li>
+ *   <li>{@link workflow.impl.ActorImpl#getNum_tareas <em>Num tareas</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class ActorImpl extends EObjectImpl implements Actor {
+	/**
+	 * The cached value of the '{@link #getFichero() <em>Fichero</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFichero()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Fichero> fichero;
+
+	/**
+	 * The cached value of the '{@link #getFormulario() <em>Formulario</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFormulario()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Formulario> formulario;
+
+	/**
+	 * The cached value of the '{@link #getTarea() <em>Tarea</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTarea()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Tarea> tarea;
+
+	/**
+	 * The cached value of the '{@link #getEnlace() <em>Enlace</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEnlace()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Enlace> enlace;
+
+	/**
+	 * The default value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNombre()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NOMBRE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getNombre() <em>Nombre</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNombre()
+	 * @generated
+	 * @ordered
+	 */
+	protected String nombre = NOMBRE_EDEFAULT;
+
+	/**
+	 * The cached setting delegate for the '{@link #getNum_tareas() <em>Num tareas</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getNum_tareas()
+	 * @generated
+	 * @ordered
+	 */
+	protected EStructuralFeature.Internal.SettingDelegate NUM_TAREAS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)WorkflowPackage.Literals.ACTOR__NUM_TAREAS).getSettingDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActorImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return WorkflowPackage.Literals.ACTOR;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Fichero> getFichero() {
+		if (fichero == null) {
+			fichero = new EObjectContainmentEList<Fichero>(Fichero.class, this, WorkflowPackage.ACTOR__FICHERO);
+		}
+		return fichero;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Formulario> getFormulario() {
+		if (formulario == null) {
+			formulario = new EObjectContainmentEList<Formulario>(Formulario.class, this, WorkflowPackage.ACTOR__FORMULARIO);
+		}
+		return formulario;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Tarea> getTarea() {
+		if (tarea == null) {
+			tarea = new EObjectContainmentEList<Tarea>(Tarea.class, this, WorkflowPackage.ACTOR__TAREA);
+		}
+		return tarea;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Enlace> getEnlace() {
+		if (enlace == null) {
+			enlace = new EObjectContainmentEList<Enlace>(Enlace.class, this, WorkflowPackage.ACTOR__ENLACE);
+		}
+		return enlace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getNombre() {
+		return nombre;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNombre(String newNombre) {
+		String oldNombre = nombre;
+		nombre = newNombre;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.ACTOR__NOMBRE, oldNombre, nombre));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getNum_tareas() {
+		return (Integer)NUM_TAREAS__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNum_tareas(int newNum_tareas) {
+		NUM_TAREAS__ESETTING_DELEGATE.dynamicSet(this, null, 0, newNum_tareas);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case WorkflowPackage.ACTOR__FICHERO:
+				return ((InternalEList<?>)getFichero()).basicRemove(otherEnd, msgs);
+			case WorkflowPackage.ACTOR__FORMULARIO:
+				return ((InternalEList<?>)getFormulario()).basicRemove(otherEnd, msgs);
+			case WorkflowPackage.ACTOR__TAREA:
+				return ((InternalEList<?>)getTarea()).basicRemove(otherEnd, msgs);
+			case WorkflowPackage.ACTOR__ENLACE:
+				return ((InternalEList<?>)getEnlace()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case WorkflowPackage.ACTOR__FICHERO:
+				return getFichero();
+			case WorkflowPackage.ACTOR__FORMULARIO:
+				return getFormulario();
+			case WorkflowPackage.ACTOR__TAREA:
+				return getTarea();
+			case WorkflowPackage.ACTOR__ENLACE:
+				return getEnlace();
+			case WorkflowPackage.ACTOR__NOMBRE:
+				return getNombre();
+			case WorkflowPackage.ACTOR__NUM_TAREAS:
+				return getNum_tareas();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case WorkflowPackage.ACTOR__FICHERO:
+				getFichero().clear();
+				getFichero().addAll((Collection<? extends Fichero>)newValue);
+				return;
+			case WorkflowPackage.ACTOR__FORMULARIO:
+				getFormulario().clear();
+				getFormulario().addAll((Collection<? extends Formulario>)newValue);
+				return;
+			case WorkflowPackage.ACTOR__TAREA:
+				getTarea().clear();
+				getTarea().addAll((Collection<? extends Tarea>)newValue);
+				return;
+			case WorkflowPackage.ACTOR__ENLACE:
+				getEnlace().clear();
+				getEnlace().addAll((Collection<? extends Enlace>)newValue);
+				return;
+			case WorkflowPackage.ACTOR__NOMBRE:
+				setNombre((String)newValue);
+				return;
+			case WorkflowPackage.ACTOR__NUM_TAREAS:
+				setNum_tareas((Integer)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case WorkflowPackage.ACTOR__FICHERO:
+				getFichero().clear();
+				return;
+			case WorkflowPackage.ACTOR__FORMULARIO:
+				getFormulario().clear();
+				return;
+			case WorkflowPackage.ACTOR__TAREA:
+				getTarea().clear();
+				return;
+			case WorkflowPackage.ACTOR__ENLACE:
+				getEnlace().clear();
+				return;
+			case WorkflowPackage.ACTOR__NOMBRE:
+				setNombre(NOMBRE_EDEFAULT);
+				return;
+			case WorkflowPackage.ACTOR__NUM_TAREAS:
+				NUM_TAREAS__ESETTING_DELEGATE.dynamicUnset(this, null, 0);
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case WorkflowPackage.ACTOR__FICHERO:
+				return fichero != null && !fichero.isEmpty();
+			case WorkflowPackage.ACTOR__FORMULARIO:
+				return formulario != null && !formulario.isEmpty();
+			case WorkflowPackage.ACTOR__TAREA:
+				return tarea != null && !tarea.isEmpty();
+			case WorkflowPackage.ACTOR__ENLACE:
+				return enlace != null && !enlace.isEmpty();
+			case WorkflowPackage.ACTOR__NOMBRE:
+				return NOMBRE_EDEFAULT == null ? nombre != null : !NOMBRE_EDEFAULT.equals(nombre);
+			case WorkflowPackage.ACTOR__NUM_TAREAS:
+				return NUM_TAREAS__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (nombre: ");
+		result.append(nombre);
+		result.append(')');
+		return result.toString();
+	}
+
+} //ActorImpl

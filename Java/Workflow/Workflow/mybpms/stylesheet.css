@@ -1,0 +1,119 @@
+a {
+	text-decoration: none;
+    color: black;
+}
+* {
+	box-sizing: border-box;
+	padding: 0px;
+	margin: 0px;
+    font-family: Roboto, Trebuchet MS, Lucida Sans Unicode, Lucida Grande,	Lucida Sans, Arial, sans-serif;
+   
+}
+
+body{
+    
+     background: rgb(187, 188, 188, 0.5); 
+    
+}
+
+.cabecera {
+    
+    margin: 2% ;
+    color: black;
+   display: flex;
+    margin-bottom: 5%;
+
+}
+
+.cabecera .der{
+    
+margin-left: 80%;
+
+}
+
+.cabecera a{
+    
+	border: 1px solid #000;
+    border-radius: 10px;
+    
+}
+
+.cuerpo{
+    
+    margin: 6%;
+    text-align: center;
+}
+
+input{
+	
+	
+	border: 1px solid #000;
+	padding: 11px;
+	border-radius: 9px;
+	margin-bottom: 1%;
+   	 margin-top: 1%;
+	color: #979797;
+     background: rgb(187, 188, 188, 0.5);  
+}
+
+select{
+	
+	
+	border: 1px solid #000;
+	padding: 11px;
+	border-radius: 9px;
+	color: #979797;
+     background: rgb(187, 188, 188, 0.5); 
+}
+
+
+.envio{
+    
+    margin-bottom: 1%;
+    text-decoration: underline;
+}
+.servicio{
+    
+    margin-left: 5%;
+}
+
+h4{
+    text-align: center;
+    margin-top: 20%;
+    font-size: 400%;
+    color: green;
+}
+
+h3{
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    font-size: 400%;
+    text-decoration: underline;
+}
+
+.inicio{
+    font-size: 200%;
+    text-align: center;
+   
+}
+
+h2{
+    
+text-align: center;
+}
+
+.usuario{
+ margin-top: 5%;   
+text-align: center;
+}
+
+.borrar{
+   
+    color: red;
+    margin: auto;
+    width: 5%;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin-top: 2%;
+}

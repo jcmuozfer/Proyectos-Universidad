@@ -1,0 +1,78 @@
+
+
+<div class="registro"
+	data-ng-controller="gestionAlojamientoCtrl as controlErrores">
+	<form class="form-login" novalidate>
+		<h1>Añadir Alojamiento en Airbnb</h1>
+		<br>
+
+		<h4 class="error">{{controlErrores.mensajeError}}</h4>
+
+		<div class="formulario">Introduce el nombre del Alojamiento:</div>
+		<div>
+			<input type="text" data-ng-model="alojamiento.title"
+				placeholder="Nombre Alojamiento" class="correo">
+		</div>
+
+		<div class="formulario">Introduce la descripción del
+			Alojamiento:</div>
+		<div>
+			<textarea data-ng-model="alojamiento.description" class="correo"> Descripción </textarea>
+		</div>
+
+		<div class="formulario">Introduce un número de contacto:</div>
+		<div>
+			<input type="tel" data-ng-model="alojamiento.telephone"
+				placeholder="Teléfono" class="correo">
+		</div>
+
+		<div class="formulario">Introduce un correo electrónico:</div>
+		<div>
+
+			<input type="text" data-ng-model="alojamiento.contactEmail"
+				placeholder="Correo" class="correo">
+		</div>
+		<div class="formulario">Introduce el precio del alojamiento:</div>
+		<div>
+			<input type="number" data-ng-model="alojamiento.precio"
+				placeholder="Precio" class="correo">
+		</div>
+
+
+		<div class="formulario">Introduce la localidad Alojamiento:</div>
+		<div>
+			<input type="text" data-ng-model="alojamiento.location"
+				placeholder="Localidad" class="correo">
+		</div>
+
+		<div class="formulario">Indica si el alojamiento se encuentra
+			disponible o no:</div>
+		<div>
+			<select data-ng-model="alojamiento.disponible" class="correo">
+				<option value="1">Disponible</option>
+				<option value="0">Reservado</option>
+			</select>
+		</div>
+
+		<div class="text">Seleciona la una o varias categorias para su
+			alojameinto (Para selecionar varias casillas debes presionr Crtl
+			mientras pulsas las opciones):</div>
+
+		<select data-ng-model="categoriaAlojamiento" class="correo"
+			multiple="multiple">
+			<option value="-1">Por favor seleciona una o varias</option>
+			<option data-ng-repeat="categoria in nuevoAlojamiento.categorias "
+				value="{{categoria.id}}">{{categoria.name}}</option>
+		</select>
+
+		<div class="text">
+			<input type="checkbox" data-ng-model="alojamiento.available">
+			Incluye servicios adicionales
+		</div>
+		<input class="buttons" type="submit"
+			data-ng-click="crearAlojamiento()" value="Crear Alojamiento" /> <a
+			data-ng-href="#!/GestionAlojamientos" class="buttons">Atrás </a>
+
+
+	</form>
+</div>

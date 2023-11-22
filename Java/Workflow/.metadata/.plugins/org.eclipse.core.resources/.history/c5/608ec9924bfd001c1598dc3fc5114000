@@ -1,0 +1,132 @@
+@"http://www.eclipse.org/OCL/Import"(ecore="http://www.eclipse.org/emf/2002/Ecore")
+@Ecore(invocationDelegates="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", settingDelegates="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", validationDelegates="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot")
+@namespace(uri="http://www.example.org/workflow", prefix="workflow")
+package workflow;
+
+@Ecore(constraints="R01 R02")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R01="actor.tarea->selectByType(Inicio)->size()=1", R02="actor.tarea->selectByType(Fin)->size()=1")
+class Workflow {
+	val BaseDatos[+] basedatos;
+	val Actor[+] actor;
+	id attr String[1] nombre;
+}
+
+@Ecore(constraints="R05")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R05="self.tarea->selectByKind (Intermedia)->size()>=1")
+class Actor {
+	val Fichero[*] fichero;
+	val Formulario[*] formulario;
+	val Tarea[+] tarea;
+	val Enlace[+] enlace;
+	attr String[1] nombre;
+
+	@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(derivation="self.tarea->size()")
+	volatile transient derived attr int[1] num_tareas;
+}
+
+class BaseDatos {
+	val Tabla[+] tabla;
+	id attr String[1] nombre;
+}
+
+class Tabla {
+	id attr String[1] nombre;
+	ref Formulario[1]#insertar formulario;
+}
+
+class Fichero {
+	id attr String[1] nombre;
+}
+
+class Formulario {
+	id attr String[1] nombre;
+	val Campo[+] campo;
+	ref Tabla[1]#formulario insertar;
+}
+
+@Ecore(constraints="R06")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R06="self.destino <> self.origen")
+class Enlace {
+	ref Tarea[1]#entrante destino;
+	ref Tarea[1]#saliente origen;
+	id attr String[1] nombre;
+}
+
+abstract class Tarea {
+	ref Enlace#destino entrante;
+	ref Enlace#origen saliente;
+}
+
+@Ecore(constraints="R03")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R03="self.entrante->isEmpty() and self.saliente->size()=1 ")
+class Inicio extends Tarea {
+}
+
+@Ecore(constraints="R04")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R04="self.saliente->isEmpty() and self.entrante->size()=1 ")
+class Fin extends Tarea {
+}
+
+abstract class Intermedia extends Tarea {
+	attr String descripcion;
+	id attr String[1] nombre;
+}
+
+class Usuario extends Intermedia {
+	ref Formulario[1] formulario;
+}
+
+class Servicio extends Intermedia {
+	ref Fichero[*] genera;
+	ref Fichero[*] lee;
+	ref Tabla[1] actualiza;
+}
+
+@Ecore(constraints="R08 R07E R10E")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R08="self.oclContainer() <> self.saliente.destino.oclContainer() ", R07E="self.saliente.destino.oclIsTypeOf(RecepcionMensaje)", R10E="self.codificacion = self.saliente.destino. oclAsType(RecepcionMensaje).codificacion")
+class EnvioMensaje extends Intermedia {
+	attr Codificacion codificacion = "JSON";
+	ref Fichero fichero;
+}
+
+@Ecore(constraints="R07R R10R")
+@"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(R07R="self.entrante.origen.oclIsTypeOf(EnvioMensaje)", R10R="self.codificacion = self.entrante.origen.oclAsType(EnvioMensaje).codificacion")
+class RecepcionMensaje extends Intermedia {
+	attr Codificacion codificacion;
+}
+
+class ConsultaBD extends Intermedia {
+	ref Tabla[1] consulta;
+}
+
+class BorradoBD extends Intermedia {
+	ref Tabla[1] borra;
+}
+
+enum Codificacion {
+	JSON = 0;
+	XML = 1;
+	YAML = 2;
+}
+
+abstract class Campo {
+	id attr String[1] nombre = "";
+}
+
+class Enteros extends Campo {
+}
+
+class Booleanos extends Campo {
+}
+
+class Strings extends Campo {
+}
+
+class Listas extends Campo {
+	val Valor[+] valor;
+}
+
+class Valor {
+	id attr String[1] nombre = "";
+}
+

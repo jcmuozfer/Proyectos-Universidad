@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow:Workflow
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:workflow="http://www.example.org/workflow"
+    nombre="Workflow">
+  <basedatos
+      nombre="BD1">
+    <tabla nombre="Usuario"
+        formulario="RegistroUsuario"/>
+  </basedatos>
+  <actor nombre="Jesus">
+    <fichero
+        nombre="Fichero1"/>
+    <fichero
+        nombre="Fichero2"/>
+    <formulario
+        nombre="RegistroUsuario"
+        insertar="Usuario">
+      <campo
+          xsi:type="workflow:Enteros"
+          nombre="Edad"/>
+      <campo
+          xsi:type="workflow:Booleanos"
+          nombre="¿Empleo?"/>
+      <campo
+          xsi:type="workflow:Strings"
+          nombre="Nombre"/>
+      <campo
+          xsi:type="workflow:Listas"
+          nombre="Sexo">
+        <valor
+            nombre="Masculino"/>
+        <valor
+            nombre="Femenino"/>
+      </campo>
+    </formulario>
+    <tarea xsi:type="workflow:Inicio"
+        saliente="InicioUsuario"/>
+    <tarea xsi:type="workflow:Usuario"
+        entrante="InicioUsuario"
+        saliente="UsuarioServicio"
+        descripcion="Usuario1"
+        nombre="Usuario1"
+        formulario="RegistroUsuario"/>
+    <tarea xsi:type="workflow:Servicio"
+        entrante="UsuarioServicio"
+        saliente="ServicioEnvioJesus"  
+        descripcion="Servicio1"
+        nombre="Servicio1"
+        genera="Fichero1"
+        lee="Fichero2"
+        actualiza="Usuario"/>
+    <tarea xsi:type="workflow:EnvioMensaje"
+        entrante="ServicioEnvioJesus"
+        saliente="EnvioJesusRecepcionManuel"
+        descripcion="EnviaJesus"
+        nombre="EnviaJesus"
+        fichero="Fichero1"/>
+    <tarea xsi:type="workflow:RecepcionMensaje"
+        entrante="EnviaManuelRecibeJesus"
+        saliente="RecepcionJesusFin"
+        descripcion="RecibeJesus"
+        nombre="RecibeJesus"/>
+    <tarea xsi:type="workflow:Fin"
+        entrante="RecepcionJesusFin"/>
+    <enlace
+        destino="Usuario1"
+        origen="//@actor.0/@tarea.0"
+        nombre="InicioUsuario"/>
+    <enlace
+        destino="Servicio1"
+        origen="Usuario1"
+        nombre="UsuarioServicio"/>
+    <enlace
+        destino="EnviaJesus"
+        origen="Servicio1"
+        nombre="ServicioEnvioJesus"/>
+    <enlace
+        destino="RecibeManuel"
+        origen="EnviaJesus"
+        nombre="EnvioJesusRecepcionManuel"/>
+    <enlace
+        destino="//@actor.0/@tarea.5"
+        origen="RecibeJesus"
+        nombre="RecepcionJesusFin"/>
+  </actor>
+  <actor nombre="Manuel">
+    <tarea xsi:type="workflow:RecepcionMensaje"
+        entrante="EnvioJesusRecepcionManuel"
+        saliente="RecibeManuelConsultaBD"
+        descripcion="RecibeManuel"
+        nombre="RecibeManuel"/>
+    <tarea xsi:type="workflow:ConsultaBD"
+        entrante="RecibeManuelConsultaBD"
+        saliente="ConsultaBDBorraBD"
+        descripcion="CBD"
+        nombre="CBD"
+        consulta="Usuario"/>
+    <tarea xsi:type="workflow:BorradoBD"
+        entrante="ConsultaBDBorraBD"
+        saliente="BorraBDEnviaManuel"
+        descripcion="BBD"
+        nombre="BBD"
+        borra="Usuario"/>
+    <tarea xsi:type="workflow:EnvioMensaje"
+        entrante="BorraBDEnviaManuel"
+        saliente="EnviaManuelRecibeJesus"
+        descripcion="EnviaManuel"
+        nombre="EnviaManuel"
+        fichero="Fichero2"/>
+    <enlace
+        destino="CBD"
+        origen="RecibeManuel"
+        nombre="RecibeManuelConsultaBD"/>
+    <enlace
+        destino="BBD"
+        origen="CBD"
+        nombre="ConsultaBDBorraBD"/>
+    <enlace
+        destino="EnviaManuel"
+        origen="BBD"
+        nombre="BorraBDEnviaManuel"/>
+    <enlace
+        destino="RecibeJesus"
+        origen="EnviaManuel"
+        nombre="EnviaManuelRecibeJesus"/>
+  </actor>
+</workflow:Workflow>

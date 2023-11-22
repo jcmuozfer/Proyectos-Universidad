@@ -1,0 +1,44 @@
+[comment encoding = UTF-8 /]
+[module Actor('http://www.example.org/workflow')]
+
+[import org::eclipse::acceleo::module::Negocio::main::Tarea /]
+[import org::eclipse::acceleo::module::Negocio::main::Fichero/]
+[template public Actor(anActor : Actor)]
+[anActor.fichero.Fichero()/]
+[anActor.tarea.generarTarea()/]
+[file ( anActor.nombre +'/index.html', false, 'UTF-8')]
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		<title>[anActor.nombre/] - Actor</title>
+		 <link rel="stylesheet" type="text/css"	href="../stylesheet.css">
+	</head>
+	<body>
+<div class="inicio">
+
+<h3> Bienvenido [ anActor.nombre/]!!</h3>
+[for(t: Tarea | anActor.tarea)]
+	    
+
+       	[if t.oclIsTypeOf(Inicio)] 			
+				<div class="inicio"><a href="
+			[if t.saliente.destino.oclIsTypeOf(Usuario)] [ t.saliente.destino.oclAsType(Usuario).nombre +'.html'/] [/if] 
+			[if t.saliente.destino.oclIsTypeOf(Servicio)] [ t.saliente.destino.oclAsType(Servicio).nombre +'.html'/] [/if] 
+			[if t.saliente.destino.oclIsTypeOf(RecepcionMensaje)] [ t.saliente.destino.oclAsType(RecepcionMensaje).nombre +'.html'/] [/if] 
+			[if t.saliente.destino.oclIsTypeOf(EnvioMensaje)] [ t.saliente.destino.oclAsType(EnvioMensaje).nombre +'.html'/] [/if] 
+			[if t.saliente.destino.oclIsTypeOf(ConsultaBD)] [ t.saliente.destino.oclAsType(ConsultaBD).nombre +'.html'/] [/if] 
+			[if t.saliente.destino.oclIsTypeOf(BorradoBD)] [ t.saliente.destino.oclAsType(BorradoBD).nombre +'.html'/][/if] 
+			[if t.saliente.destino.oclIsTypeOf(Fin)] [ t.saliente.destino.oclAsType(Fin) +'.html'/] [/if] 
+			"> Inicio</a></div> [/if] 
+        [if t.oclIsTypeOf(Fin)]<div class= "der"><a href="TareaFin.html"> Finalizar Proceso </a> </div> [/if] 
+		[if t.oclIsTypeOf(RecepcionMensaje)]<li>  <a href=" [ t.oclAsType(RecepcionMensaje).nombre +'.html'/]">[ t.oclAsType(RecepcionMensaje).nombre/]</a> </li> [/if] 
+	[/for]
+	</div>	
+	</body>
+</html>	 
+
+[/file]
+
+[/template]

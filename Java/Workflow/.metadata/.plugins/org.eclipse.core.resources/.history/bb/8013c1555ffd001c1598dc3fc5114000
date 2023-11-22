@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition">
+  <gmfgraph:Canvas name="workflow">
+    <figures name="Default">
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="EnlaceFigureTargetDecoration"/>
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="TablaFormularioFigureTargetDecoration"/>
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="UsuarioFormularioFigureTargetDecoration"/>
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="ServicioGeneraFigureTargetDecoration"/>
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="ServicioLeeFigureTargetDecoration"/>
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="ServicioActualizaFigureTargetDecoration"/>
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="EnvioMensajeFicheroFigureTargetDecoration"/>
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="ConsultaBDConsultaFigureTargetDecoration"/>
+      <figures xsi:type="gmfgraph:PolylineDecoration" name="BorradoBDBorraFigureTargetDecoration"/>
+      <descriptors name="ActorFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ActorFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="ActorLabelFigure" text="Actor">
+            <maximumSize dx="10000" dy="50"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="ActorFicheroCompartmentFigure" outline="false"/>
+          <children xsi:type="gmfgraph:Rectangle" name="ActorFormularioCompartmentFigure" outline="false"/>
+          <children xsi:type="gmfgraph:Rectangle" name="ActorTareaCompartmentFigure" outline="false"/>
+        </actualFigure>
+        <accessors accessor="getFigureActorLabelFigure" figure="/0/@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+        <accessors accessor="getActorFicheroCompartmentFigure" figure="/0/@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+        <accessors accessor="getActorFormularioCompartmentFigure" figure="/0/@figures.0/@descriptors.0/@actualFigure/@children.2"/>
+        <accessors accessor="getActorTareaCompartmentFigure" figure="/0/@figures.0/@descriptors.0/@actualFigure/@children.3"/>
+      </descriptors>
+      <descriptors name="BaseDatosFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="BaseDatosFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="BaseDatosLabelFigure" text="BaseDatos">
+            <maximumSize dx="10000" dy="50"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="BaseDatosTablaCompartmentFigure" outline="false"/>
+        </actualFigure>
+        <accessors accessor="getFigureBaseDatosLabelFigure" figure="/0/@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+        <accessors accessor="getBaseDatosTablaCompartmentFigure" figure="/0/@figures.0/@descriptors.1/@actualFigure/@children.1"/>
+      </descriptors>
+      <descriptors name="TablaFigure">
+        <actualFigure xsi:type="gmfgraph:SVGFigure" name="TablaFigure" documentURI="platform:/plugin/Workflow/Img/ftinserttable.svg">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="TablaLabelFigure" text="Tabla"/>
+        </actualFigure>
+        <accessors accessor="getFigureTablaLabelFigure" figure="/0/@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="FicheroFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="FicheroFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="FicheroLabelFigure" text="Fichero"/>
+        </actualFigure>
+        <accessors accessor="getFigureFicheroLabelFigure" figure="/0/@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="FormularioFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="FormularioFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="FormularioLabelFigure" text="Formulario">
+            <maximumSize dx="10000" dy="50"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="FormularioCampoCompartmentFigure" outline="false"/>
+        </actualFigure>
+        <accessors accessor="getFigureFormularioLabelFigure" figure="/0/@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+        <accessors accessor="getFormularioCampoCompartmentFigure" figure="/0/@figures.0/@descriptors.4/@actualFigure/@children.1"/>
+      </descriptors>
+      <descriptors name="InicioFigure">
+        <actualFigure xsi:type="gmfgraph:SVGFigure" name="InicioFigure" documentURI="platform:/plugin/Workflow/Img/ftline-rect-begin.svg">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="FinFigure">
+        <actualFigure xsi:type="gmfgraph:SVGFigure" name="FinFigure" documentURI="platform:/plugin/Workflow/Img/ftline-rect-end.svg">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="UsuarioFigure">
+        <actualFigure xsi:type="gmfgraph:SVGFigure" name="UsuarioFigure" documentURI="platform:/plugin/Workflow/Img/ftkuser.svg">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="UsuarioLabelFigure" text="Usuario"/>
+        </actualFigure>
+        <accessors accessor="getFigureUsuarioLabelFigure" figure="/0/@figures.0/@descriptors.7/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="ServicioFigure">
+        <actualFigure xsi:type="gmfgraph:SVGFigure" name="ServicioFigure" documentURI="platform:/plugin/Workflow/Img/service.svg">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="ServicioLabelFigure" text="Servicio"/>
+        </actualFigure>
+        <accessors accessor="getFigureServicioLabelFigure" figure="/0/@figures.0/@descriptors.8/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="EnvioMensajeFigure">
+        <actualFigure xsi:type="gmfgraph:SVGFigure" name="EnvioMensajeFigure" documentURI="platform:/plugin/Workflow/Img/Crooked-mail-1.svg">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="EnvioMensajeLabelFigure" text="EnvioMensaje"/>
+        </actualFigure>
+        <accessors accessor="getFigureEnvioMensajeLabelFigure" figure="/0/@figures.0/@descriptors.9/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="RecepcionMensajeFigure">
+        <actualFigure xsi:type="gmfgraph:SVGFigure" name="RecepcionMensajeFigure" documentURI="platform:/plugin/Workflow/Img/Anonymous-aiga-mail.svg">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="RecepcionMensajeLabelFigure" text="RecepcionMensaje"/>
+        </actualFigure>
+        <accessors accessor="getFigureRecepcionMensajeLabelFigure" figure="/0/@figures.0/@descriptors.10/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="ConsultaBDFigure">
+        <actualFigure xsi:type="gmfgraph:SVGFigure" name="ConsultaBDFigure" documentURI="platform:/plugin/Workflow/Img/interrogation.svg">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="ConsultaBDLabelFigure" text="ConsultaBD"/>
+        </actualFigure>
+        <accessors accessor="getFigureConsultaBDLabelFigure" figure="/0/@figures.0/@descriptors.11/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="BorradoBDFigure">
+        <actualFigure xsi:type="gmfgraph:SVGFigure" name="BorradoBDFigure" documentURI="platform:/plugin/Workflow/Img/erase.svg">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="BorradoBDLabelFigure" text="BorradoBD"/>
+        </actualFigure>
+        <accessors accessor="getFigureBorradoBDLabelFigure" figure="/0/@figures.0/@descriptors.12/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="EnterosFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="EnterosFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="EnterosLabelFigure" text="Enteros"/>
+        </actualFigure>
+        <accessors accessor="getFigureEnterosLabelFigure" figure="/0/@figures.0/@descriptors.13/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="BooleanosFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="BooleanosFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="BooleanosLabelFigure" text="Booleanos"/>
+        </actualFigure>
+        <accessors accessor="getFigureBooleanosLabelFigure" figure="/0/@figures.0/@descriptors.14/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="StringsFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="StringsFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="StringsLabelFigure" text="Strings"/>
+        </actualFigure>
+        <accessors accessor="getFigureStringsLabelFigure" figure="/0/@figures.0/@descriptors.15/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="ListasFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ListasFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="ListasLabelFigure" text="Listas">
+            <maximumSize dx="10000" dy="50"/>
+          </children>
+          <children xsi:type="gmfgraph:Rectangle" name="ListasValorCompartmentFigure" outline="false"/>
+        </actualFigure>
+        <accessors accessor="getFigureListasLabelFigure" figure="/0/@figures.0/@descriptors.16/@actualFigure/@children.0"/>
+        <accessors accessor="getListasValorCompartmentFigure" figure="/0/@figures.0/@descriptors.16/@actualFigure/@children.1"/>
+      </descriptors>
+      <descriptors name="ValorFigure">
+        <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ValorFigure">
+          <border xsi:type="gmfgraph:MarginBorder">
+            <insets top="5" left="5" bottom="5" right="5"/>
+          </border>
+          <children xsi:type="gmfgraph:Label" name="ValorLabelFigure" text="Valor"/>
+        </actualFigure>
+        <accessors accessor="getFigureValorLabelFigure" figure="/0/@figures.0/@descriptors.17/@actualFigure/@children.0"/>
+      </descriptors>
+      <descriptors name="EnlaceFigure">
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EnlaceFigure" targetDecoration="/0/@figures.0/@figures.0">
+          <foregroundColor xsi:type="gmfgraph:RGBColor" red="29" green="250" blue="42"/>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="TablaFormularioFigure">
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="TablaFormularioFigure" targetDecoration="/0/@figures.0/@figures.1">
+          <foregroundColor xsi:type="gmfgraph:RGBColor" red="130" green="204" blue="224"/>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="TablaFormularioExternalLabelFigure">
+        <actualFigure xsi:type="gmfgraph:Label" name="TablaFormularioExternalLabel"/>
+      </descriptors>
+      <descriptors name="UsuarioFormularioFigure">
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="UsuarioFormularioFigure" targetDecoration="/0/@figures.0/@figures.2">
+          <foregroundColor xsi:type="gmfgraph:RGBColor" red="162" green="247" blue="59"/>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="UsuarioFormularioExternalLabelFigure">
+        <actualFigure xsi:type="gmfgraph:Label" name="UsuarioFormularioExternalLabel"/>
+      </descriptors>
+      <descriptors name="ServicioGeneraFigure">
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ServicioGeneraFigure" targetDecoration="/0/@figures.0/@figures.3">
+          <foregroundColor xsi:type="gmfgraph:RGBColor" red="162" green="247" blue="59"/>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="ServicioGeneraExternalLabelFigure">
+        <actualFigure xsi:type="gmfgraph:Label" name="ServicioGeneraExternalLabel"/>
+      </descriptors>
+      <descriptors name="ServicioLeeFigure">
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ServicioLeeFigure" targetDecoration="/0/@figures.0/@figures.4">
+          <foregroundColor xsi:type="gmfgraph:RGBColor" red="121" green="190" blue="38"/>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="ServicioLeeExternalLabelFigure">
+        <actualFigure xsi:type="gmfgraph:Label" name="ServicioLeeExternalLabel"/>
+      </descriptors>
+      <descriptors name="ServicioActualizaFigure">
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ServicioActualizaFigure" targetDecoration="/0/@figures.0/@figures.5">
+          <foregroundColor xsi:type="gmfgraph:RGBColor" red="97" green="154" blue="30"/>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="ServicioActualizaExternalLabelFigure">
+        <actualFigure xsi:type="gmfgraph:Label" name="ServicioActualizaExternalLabel"/>
+      </descriptors>
+      <descriptors name="EnvioMensajeFicheroFigure">
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="EnvioMensajeFicheroFigure" targetDecoration="/0/@figures.0/@figures.6">
+          <foregroundColor xsi:type="gmfgraph:RGBColor" red="249" green="233" blue="39"/>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="EnvioMensajeFicheroExternalLabelFigure">
+        <actualFigure xsi:type="gmfgraph:Label" name="EnvioMensajeFicheroExternalLabel"/>
+      </descriptors>
+      <descriptors name="ConsultaBDConsultaFigure">
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ConsultaBDConsultaFigure" targetDecoration="/0/@figures.0/@figures.7">
+          <foregroundColor xsi:type="gmfgraph:RGBColor" red="181" green="45" blue="249"/>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="ConsultaBDConsultaExternalLabelFigure">
+        <actualFigure xsi:type="gmfgraph:Label" name="ConsultaBDConsultaExternalLabel"/>
+      </descriptors>
+      <descriptors name="BorradoBDBorraFigure">
+        <actualFigure xsi:type="gmfgraph:PolylineConnection" name="BorradoBDBorraFigure" targetDecoration="/0/@figures.0/@figures.8">
+          <foregroundColor xsi:type="gmfgraph:RGBColor" red="126" green="25" blue="177"/>
+        </actualFigure>
+      </descriptors>
+      <descriptors name="BorradoBDBorraExternalLabelFigure">
+        <actualFigure xsi:type="gmfgraph:Label" name="BorradoBDBorraExternalLabel"/>
+      </descriptors>
+    </figures>
+    <nodes name="Actor" figure="ActorFigure"/>
+    <nodes name="BaseDatos" figure="BaseDatosFigure"/>
+    <nodes name="Tabla" figure="TablaFigure"/>
+    <nodes name="Fichero" figure="FicheroFigure"/>
+    <nodes name="Formulario" figure="FormularioFigure"/>
+    <nodes name="Inicio" figure="InicioFigure"/>
+    <nodes name="Fin" figure="FinFigure"/>
+    <nodes name="Usuario" figure="UsuarioFigure"/>
+    <nodes name="Servicio" figure="ServicioFigure"/>
+    <nodes name="EnvioMensaje" figure="EnvioMensajeFigure"/>
+    <nodes name="RecepcionMensaje" figure="RecepcionMensajeFigure"/>
+    <nodes name="ConsultaBD" figure="ConsultaBDFigure"/>
+    <nodes name="BorradoBD" figure="BorradoBDFigure"/>
+    <nodes name="Enteros" figure="EnterosFigure"/>
+    <nodes name="Booleanos" figure="BooleanosFigure"/>
+    <nodes name="Strings" figure="StringsFigure"/>
+    <nodes name="Listas" figure="ListasFigure"/>
+    <nodes name="Valor" figure="ValorFigure"/>
+    <connections name="Enlace" figure="EnlaceFigure"/>
+    <connections name="TablaFormulario" figure="TablaFormularioFigure"/>
+    <connections name="UsuarioFormulario" figure="UsuarioFormularioFigure"/>
+    <connections name="ServicioGenera" figure="ServicioGeneraFigure"/>
+    <connections name="ServicioLee" figure="ServicioLeeFigure"/>
+    <connections name="ServicioActualiza" figure="ServicioActualizaFigure"/>
+    <connections name="EnvioMensajeFichero" figure="EnvioMensajeFicheroFigure"/>
+    <connections name="ConsultaBDConsulta" figure="ConsultaBDConsultaFigure"/>
+    <connections name="BorradoBDBorra" figure="BorradoBDBorraFigure"/>
+    <compartments name="ActorFicheroCompartment" figure="ActorFigure" collapsible="true" accessor="/0/@figures.0/@descriptors.0/@accessors.1"/>
+    <compartments name="ActorFormularioCompartment" figure="ActorFigure" collapsible="true" accessor="/0/@figures.0/@descriptors.0/@accessors.2"/>
+    <compartments name="ActorTareaCompartment" figure="ActorFigure" collapsible="true" accessor="/0/@figures.0/@descriptors.0/@accessors.3"/>
+    <compartments name="BaseDatosTablaCompartment" figure="BaseDatosFigure" collapsible="true" accessor="/0/@figures.0/@descriptors.1/@accessors.1"/>
+    <compartments name="FormularioCampoCompartment" figure="FormularioFigure" collapsible="true" accessor="/0/@figures.0/@descriptors.4/@accessors.1"/>
+    <compartments name="ListasValorCompartment" figure="ListasFigure" collapsible="true" accessor="/0/@figures.0/@descriptors.16/@accessors.1"/>
+    <labels name="ActorLabel" figure="ActorFigure" accessor="/0/@figures.0/@descriptors.0/@accessors.0"/>
+    <labels name="BaseDatosLabel" figure="BaseDatosFigure" accessor="/0/@figures.0/@descriptors.1/@accessors.0"/>
+    <labels name="TablaLabel" figure="TablaFigure" accessor="/0/@figures.0/@descriptors.2/@accessors.0"/>
+    <labels name="FicheroLabel" figure="FicheroFigure" accessor="/0/@figures.0/@descriptors.3/@accessors.0"/>
+    <labels name="FormularioLabel" figure="FormularioFigure" accessor="/0/@figures.0/@descriptors.4/@accessors.0"/>
+    <labels name="UsuarioLabel" figure="UsuarioFigure" accessor="/0/@figures.0/@descriptors.7/@accessors.0"/>
+    <labels name="ServicioLabel" figure="ServicioFigure" accessor="/0/@figures.0/@descriptors.8/@accessors.0"/>
+    <labels name="EnvioMensajeLabel" figure="EnvioMensajeFigure" accessor="/0/@figures.0/@descriptors.9/@accessors.0"/>
+    <labels name="RecepcionMensajeLabel" figure="RecepcionMensajeFigure" accessor="/0/@figures.0/@descriptors.10/@accessors.0"/>
+    <labels name="ConsultaBDLabel" figure="ConsultaBDFigure" accessor="/0/@figures.0/@descriptors.11/@accessors.0"/>
+    <labels name="BorradoBDLabel" figure="BorradoBDFigure" accessor="/0/@figures.0/@descriptors.12/@accessors.0"/>
+    <labels name="EnterosLabel" figure="EnterosFigure" accessor="/0/@figures.0/@descriptors.13/@accessors.0"/>
+    <labels name="BooleanosLabel" figure="BooleanosFigure" accessor="/0/@figures.0/@descriptors.14/@accessors.0"/>
+    <labels name="StringsLabel" figure="StringsFigure" accessor="/0/@figures.0/@descriptors.15/@accessors.0"/>
+    <labels name="ListasLabel" figure="ListasFigure" accessor="/0/@figures.0/@descriptors.16/@accessors.0"/>
+    <labels name="ValorLabel" figure="ValorFigure" accessor="/0/@figures.0/@descriptors.17/@accessors.0"/>
+    <labels name="TablaFormularioExternalLabel" figure="TablaFormularioExternalLabelFigure" elementIcon="false"/>
+    <labels name="UsuarioFormularioExternalLabel" figure="UsuarioFormularioExternalLabelFigure" elementIcon="false"/>
+    <labels name="ServicioGeneraExternalLabel" figure="ServicioGeneraExternalLabelFigure" elementIcon="false"/>
+    <labels name="ServicioLeeExternalLabel" figure="ServicioLeeExternalLabelFigure" elementIcon="false"/>
+    <labels name="ServicioActualizaExternalLabel" figure="ServicioActualizaExternalLabelFigure" elementIcon="false"/>
+    <labels name="EnvioMensajeFicheroExternalLabel" figure="EnvioMensajeFicheroExternalLabelFigure" elementIcon="false"/>
+    <labels name="ConsultaBDConsultaExternalLabel" figure="ConsultaBDConsultaExternalLabelFigure" elementIcon="false"/>
+    <labels name="BorradoBDBorraExternalLabel" figure="BorradoBDBorraExternalLabelFigure" elementIcon="false"/>
+  </gmfgraph:Canvas>
+  <gmfgraph:Label name="InicioLabelFigure" text="Inicio"/>
+  <gmfgraph:Label name="FinLabelFigure" text="Fin"/>
+</xmi:XMI>

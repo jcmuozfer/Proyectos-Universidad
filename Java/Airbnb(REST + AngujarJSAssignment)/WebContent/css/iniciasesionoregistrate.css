@@ -1,0 +1,241 @@
+* {
+	text-align: center;
+}
+
+h4 {
+	color: darkred;
+	padding: 3%;
+}
+
+.form-login {
+	width: 50%;
+	height: 100%;
+	background: rgb(187, 188, 188, 0.5);
+	margin: auto;
+	margin-top: 8%;
+	padding: 2%;
+	color: #fff;
+}
+
+.categoriasAlojamiento {
+	color: black;
+	display: flex;
+	margin-top: 3%;
+     flex-direction: row;
+     flex-wrap: wrap;
+}
+
+.categoriasAlojamiento div {
+
+margin-right: 2%;
+}
+.selecionAvailable{
+	padding: 2%;
+	color: black;
+	display: block;
+	float: left;
+	margin-top: 5%;
+}
+
+table {
+	width: 60%;
+	margin: 0% 20% 0% 20%;
+}
+
+.correo {
+	/* Formulario correo*/
+	width: 100%;
+	/* anchura cuadro*/
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 11px;
+	background: rgb(37, 35, 35, 0.8);
+	border-radius: 9px;
+	margin-bottom: 5%;
+	color: #979797;
+}
+
+.correo::placeholder, .fecha {
+	color: rgb(0, 0, 0, 0.5);
+}
+
+.correo:hover::placeholder, .fecha:hover {
+	color: #BFBABA;
+}
+
+.correo:hover, .fecha:hover {
+	background-color: black;
+	border: 1px solid white;
+	outline: 1px solid black;
+}
+
+.buttons {
+	/*Boton Continua*/
+	margin: auto;
+	width: 60%;
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 2% 2%;
+	background: rgb(37, 35, 35, 1);
+	border-radius: 9px;
+	color: white;
+	margin-top: 5%;
+}
+
+a.buttons {
+	display: block;
+}
+
+.buttons:hover {
+	background: rgb(37, 35, 35, 0.8);
+}
+
+.cambiar {
+	/*Texto o*/
+	color: #B7B2B2;
+	text-decoration: underline;
+	padding: 1px;
+	display: block;
+	text-align: left;
+	margin-top: 10%;
+	margin-bottom: -15%;
+}
+
+.registrarse {
+	margin: auto;
+	padding: 2% 2%;
+	background: rgb(37, 35, 35, 0);
+	color: black;
+	text-decoration: underline;
+	border-radius: 9px;
+	border: 0px solid #fff;
+	margin-top: -10%;
+}
+
+.registrarse:hover {
+	margin: auto;
+	padding: 1% 1%;
+	background: rgb(37, 35, 35, 0.5);
+	color: black;
+	text-decoration: underline;
+	border-radius: 9px;
+	border: 1px solid #fff;
+	border-radius: 10px;
+}
+
+/**/
+.cerrar {
+	/*Boton Continua*/
+	display: block;
+	width: 60%;
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 2% 2%;
+	background: rgb(37, 35, 35, 1);
+	border-radius: 9px;
+	color: rgb(255, 0, 0, 0.6);
+	margin: auto;
+	margin-top: 4%;
+}
+
+.eliminar {
+	display: block;
+	width: 60%;
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 2% 2%;
+	background: rgb(255, 0, 0, 0.8);
+	border-radius: 9px;
+	color: black;
+	margin: auto;
+	margin-top: 1%;
+}
+
+.cerrar:hover {
+	background: rgb(255, 0, 0, 0.6);
+	color: black;
+}
+
+/**/
+.eliminar {
+	/*Boton Continua*/
+	width: 60%;
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 2% 2%;
+	background: rgb(255, 0, 0, 0.8);
+	border-radius: 9px;
+	text-decoration: none;
+	margin: auto;
+	margin-top: 1%;
+}
+
+.eliminar:hover {
+	background: rgb(255, 0, 0, 0.6);
+	color: black;
+}
+
+/**/
+.gestion {
+	display: block;
+	margin: auto;
+	margin-top: -4%;
+	margin-bottom: 3%;
+	/*Boton Continua*/
+	width: 60%;
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 2% 2%;
+	background: rgb(37, 35, 35, 1);
+	border-radius: 9px;
+	color: white;
+}
+
+.gestion:hover {
+	background: rgb(37, 35, 35, 0.8);
+}
+
+/****************Botones inicio sesión alternativos****************/
+/*button {
+	background: #F9F9F9;
+	width: 80%;
+	border: 1px solid #fff;
+	padding: 1% 1%;
+	background: rgb(37, 35, 35, 0.5);
+	border-radius: 9px;
+	align-items: center;
+	margin-top:2%;
+	margin-bottom: 2%;
+}*/
+button:hover {
+	background: rgb(37, 35, 35, 1);
+	color: white;
+}
+
+.imgGoogle, .imgTelefono, .imgFacebook, .imgApple {
+	vertical-align: middle;
+	float: left;
+	width: 5%;
+	margin-right: 10%;
+}
+
+/****************REGISTRARSE*****************/
+.text {
+	color: black;
+	text-align: justify;
+}
+
+.aceptar {
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.formulario {
+	color: black;
+	text-align: justify;
+	margin-top: 3%;
+}
+
+.error {
+	color: #D50F0F;
+}

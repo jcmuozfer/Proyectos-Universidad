@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/Workflow/src" modelPluginID="Workflow"
+    modelName="Workflow" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>workflow.emf</foreignModel>
+  <genPackages prefix="Workflow" disposableProviderFactory="true" ecorePackage="workflow.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="workflow.ecore#//Codificacion">
+      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//Codificacion/JSON"/>
+      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//Codificacion/XML"/>
+      <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//Codificacion/YAML"/>
+    </genEnums>
+    <genClasses ecoreClass="workflow.ecore#//Workflow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//Workflow/basedatos"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//Workflow/actor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Workflow/nombre"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Actor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//Actor/fichero"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//Actor/formulario"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//Actor/tarea"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//Actor/enlace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Actor/nombre"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Actor/num_tareas"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//BaseDatos">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//BaseDatos/tabla"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//BaseDatos/nombre"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Tabla">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Tabla/nombre"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Tabla/formulario"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Fichero">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Fichero/nombre"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Formulario">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Formulario/nombre"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//Formulario/campo"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Formulario/insertar"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Enlace">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Enlace/destino"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Enlace/origen"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Enlace/nombre"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="workflow.ecore#//Tarea">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Tarea/entrante"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Tarea/saliente"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Inicio"/>
+    <genClasses ecoreClass="workflow.ecore#//Fin"/>
+    <genClasses image="false" ecoreClass="workflow.ecore#//Intermedia">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Intermedia/descripcion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Intermedia/nombre"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Usuario">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Usuario/formulario"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Servicio">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Servicio/genera"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Servicio/lee"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Servicio/actualiza"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//EnvioMensaje">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//EnvioMensaje/codificacion"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//EnvioMensaje/fichero"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//RecepcionMensaje">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//RecepcionMensaje/codificacion"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//ConsultaBD">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//ConsultaBD/consulta"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//BorradoBD">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//BorradoBD/borra"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="workflow.ecore#//Campo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Campo/nombre"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Enteros"/>
+    <genClasses ecoreClass="workflow.ecore#//Booleanos"/>
+    <genClasses ecoreClass="workflow.ecore#//Strings"/>
+    <genClasses ecoreClass="workflow.ecore#//Listas">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//Listas/valor"/>
+    </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Valor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Valor/nombre"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

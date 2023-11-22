@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html id="list" data-ng-app="airbnbApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<link rel="shortcut icon" href="../img/principal/logo.png">
+<link rel="stylesheet" type="text/css"	href="../css/categoriaLocalizacion.css">
+<link rel="stylesheet" type="text/css" href="../css/comun.css">
+<link rel="stylesheet" type="text/css"href="../css/iniciasesionoregistrate.css">
+<link rel="stylesheet" type="text/css"href="../css/detalleAlojamiento.css">
+
+
+<title>Airbnb</title>
+
+ <!-- Include the AngularJS library -->
+
+    <script src="../js/angular/angular.js"></script>
+	<script src="../js/angular/angular-route.js"></script>
+<!-- Modules -->
+<!-- Main -->
+        <script src="../js/app.js"></script>
+    
+    <!-- controllers -->
+        <script src="../js/controllers/alojamientosCategoriaCtrl.js"></script>
+        <script src="../js/controllers/gestionAlojamientoCtrl.js"></script>
+        <script src="../js/controllers/listaAlojamientoUsuarioCtrl.js"></script>
+        <script src="../js/controllers/perfilCtrl.js"></script>
+		<script src="../js/controllers/categoriaCtrl.js"></script>
+		
+    <!-- factories -->
+        <script src="../js/factories/alojamientosFactory.js"></script>
+        <script src="../js/factories/usuarioFactory.js"></script>
+        <script src="../js/factories/categoriaFactory.js"></script>
+
+
+    
+    
+</head>
+<body>
+	<header class="cabecera">
+
+					<a  data-ng-href = "#!/"  >
+						<img class="imgHeaderLogo" data-ng-src="../img/principal/header-logo.png" alt="" />
+					 </a>
+		<div class="elDer">
+			
+					<a  data-ng-href = "#!/Perfil"  >
+						<img class="imgheaderPerfil" data-ng-src="../img/principal/header-perfil.png" alt="" />
+					 </a>
+
+		</div>
+
+	</header>
+	
+	<div data-ng-view></div>
+  	<div ></div>
+  </body>
+
+</html>

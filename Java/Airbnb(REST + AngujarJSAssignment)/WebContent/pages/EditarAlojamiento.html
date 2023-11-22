@@ -1,0 +1,111 @@
+
+
+
+<div class="registro"
+	data-ng-controller="gestionAlojamientoCtrl as info">
+	<form class="form-login" novalidate>
+		<h1>Editar Alojamiento: {{info.alojamiento.title}}</h1>
+
+
+		<div class="formulario">Modificar el nombre del Alojamiento:</div>
+		<div>
+			<input type="text" placeholder="{{info.alojamiento.title}}"
+				class="correo" data-ng-model="alojamiento.title">
+		</div>
+
+		<div class="formulario">Modificar la descripcion del
+			Alojamiento:</div>
+		<div>
+			<textarea class="correo"
+				placeholder="{{info.alojamiento.description}}"
+				data-ng-model="alojamiento.description"> </textarea>
+		</div>
+
+		<div class="formulario">Modificar el un número de contacto:</div>
+		<div>
+			<input type="tel" placeholder="{{info.alojamiento.telephone}}"
+				class="correo" data-ng-model="alojamiento.telephone">
+		</div>
+
+		<div class="formulario">Modificar el correo electrónico:</div>
+		<div>
+			<input type="text" placeholder="{{info.alojamiento.contactEmail}}"
+				class="correo" data-ng-model="alojamiento.contactEmail">
+		</div>
+
+		<div class="formulario">Modificar el precio del alojamiento:</div>
+		<div>
+			<input type="number" placeholder="Precio" class="correo"
+				data-ng-model="alojamiento.precio">
+		</div>
+
+		<div></div>
+		<div class="formulario">Modificar la localidad Alojamiento:</div>
+		<input type="text" name="localidad"
+			placeholder="{{info.alojamiento.location}}"
+			data-ng-model="aalojamiento.location" class="correo">
+
+		<div class="formulario">Indica si el alojamiento se encuentra
+			disponible o no:</div>
+		<div class="disponibilidad">
+			<div>
+				<input type="radio" data-ng-model="alojamiento.disponible" value="1"
+					data-ng-checked="info.alojamiento.disponible">Disponible
+			</div>
+			<div>
+				<input type="radio" data-ng-model="alojamiento.disponible" value="0"
+					data-ng-checked="!info.alojamiento.disponible">Reservado
+			</div>
+		</div>
+
+
+
+
+
+
+		<div class="text">Seleciona la una o varias categorias para su
+			alojameinto (Para selecionar varias casillas debes presionr Crtl
+			mientras pulsas las opciones):</div>
+
+
+
+		<div class="categoriasAlojamiento">
+			<div
+				data-ng-repeat="CategoriaNoPertenece in info.categoriasNoPertenece">
+
+				<input type="checkbox" id="{{CategoriaNoPertenece.name}}">
+				{{CategoriaNoPertenece.name}}
+
+			</div>
+
+			<div data-ng-repeat="CategoriaPertenece in info.categoriasPertenece">
+
+				<input type="checkbox" id="{{CategoriaPertenece.name}}"
+					data-ng-checked="true"> {{CategoriaPertenece.name}}
+
+			</div>
+
+		</div>
+
+
+
+		<div class="selecionAvailable">
+			<input type="checkbox" data-ng-model="alojamiento.available"
+				data-ng-checked="info.alojamiento.available"> Incluye
+			servicios adicionales
+		</div>
+
+
+		<h4 class="error">{{info.mensajeError}}</h4>
+
+
+
+		<input class="buttons" type="submit"
+			data-ng-click="editarAlojamiento()" value="Aceptar y continuar" /> <a
+			data-ng-href="#!/GestionAlojamientos" class="buttons">Cancelar </a> <input
+			class="eliminar" type="submit" data-ng-click="eliminarAlojamiento()"
+			value="Eliminar Alojamiento" />
+
+
+	</form>
+</div>

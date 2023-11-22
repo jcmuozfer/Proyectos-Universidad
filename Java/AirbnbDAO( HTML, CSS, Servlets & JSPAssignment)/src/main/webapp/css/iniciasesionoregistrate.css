@@ -1,0 +1,226 @@
+* {
+	text-align: center;
+}
+
+.textCategoria{
+	color: black;
+	padding: 2%;
+	
+}
+h4 {
+	color: darkred;
+	padding: 3%;
+}
+
+.form-login {
+	width: 50%;
+	height: 100%;
+	background: rgb(187, 188, 188, 0.5);
+	margin: auto;
+	margin-top: 8%;
+	padding: 2%;
+	color: #fff;
+}
+
+table {
+	width: 60%;
+	margin: 0% 20% 0% 20%;
+}
+
+.correo {
+	/* Formulario correo*/
+	width: 100%;
+	/* anchura cuadro*/
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 11px;
+	background: rgb(37, 35, 35, 0.8);
+	font-size: 14px;
+	border-radius: 9px;
+	margin-bottom: 10px;
+	color: #979797;
+}
+
+.correo::placeholder, .fecha {
+	color: rgb(0, 0, 0, 0.5);
+	font-size: 80%;
+}
+
+.correo:hover::placeholder, .fecha:hover {
+	color: #BFBABA;
+}
+
+.correo:hover, .fecha:hover {
+	background-color: black;
+	border: 1px solid white;
+	outline: 1px solid black;
+}
+
+.buttons {
+	/*Boton Continua*/
+	margin: auto;
+	width: 60%;
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 2% 2%;
+	background: rgb(37, 35, 35, 1);
+	font-size: 90%;
+	border-radius: 9px;
+	color: white;
+}
+
+.buttons:hover {
+	background: rgb(37, 35, 35, 0.8);
+}
+
+.cambiar {
+	/*Texto o*/
+	color: #B7B2B2;
+	text-decoration: underline;
+	font-size: 70%;
+	padding: 1px;
+	display: block;
+	text-align: left;
+	margin-top: 10%;
+	margin-bottom: -15%;
+}
+
+.registrarse {
+	margin: auto;
+	padding: 2% 2%;
+	background: rgb(37, 35, 35, 0);
+	color: black;
+	text-decoration:underline;
+	font-size: 100%;
+	border-radius: 9px;
+	border: 0px solid #fff;
+	margin-top: -10%;
+	font-size: 100%;
+}
+
+.registrarse:hover {
+	margin: auto;
+	padding: 1% 1%;
+	background: rgb(37, 35, 35, 0.5);
+	color: black;
+	text-decoration:underline;
+	font-size: 100%;
+	border-radius: 9px;
+	border: 1px solid #fff;
+	border-radius:10px;
+	font-size: 100%;
+}
+
+/**/
+.cerrar {
+	/*Boton Continua*/
+	width: 60%;
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 2% 2%;
+	background: rgb(37, 35, 35, 1);
+	font-size: 90%;
+	border-radius: 9px;
+	color: rgb(255, 0, 0, 0.6);
+	margin-top: -60%;
+}
+
+.cerrar:hover {
+	background: rgb(255, 0, 0, 0.6);
+	color: black;
+}
+
+/**/
+.eliminar {
+	/*Boton Continua*/
+	width: 60%;
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 2% 2%;
+	background: rgb(255, 0, 0, 0.8);
+	font-size: 90%;
+	border-radius: 9px;
+	color: black;
+	margin-top: 10%;
+}
+
+.eliminar:hover {
+	background: rgb(255, 0, 0, 0.6);
+	color: black;
+}
+
+/**/
+.gestion {
+	display: block;
+	margin: auto;
+	margin-top: -4%;
+	margin-bottom: 3%;
+	/*Boton Continua*/
+	width: 60%;
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 2% 2%;
+	background: rgb(37, 35, 35, 1);
+	font-size: 90%;
+	border-radius: 9px;
+	color: white;
+}
+
+.gestion:hover {
+	background: rgb(37, 35, 35, 0.8);
+}
+
+/****************Botones inicio sesión alternativos****************/
+button {
+	background: #F9F9F9;
+	width: 80%;
+	border: 1px solid #fff;
+	/*Color borde cuadro*/
+	padding: 1% 1%;
+	background: rgb(37, 35, 35, 0.5);
+	font-size: 14px;
+	border-radius: 9px;
+	align-items: center;
+	margin-bottom: 1%;
+}
+
+input.buttons {
+	margin-bottom: 5%;
+}
+
+button a {
+	display: block;
+	text-align: center;
+}
+
+button:hover {
+	background: rgb(37, 35, 35, 1);
+	color: white;
+}
+
+.imgGoogle, .imgTelefono, .imgFacebook, .imgApple {
+	vertical-align: middle;
+	float: left;
+	width: 5%;
+	margin-right: 10%;
+}
+
+/****************REGISTRARSE*****************/
+.text {
+	color: black;
+	font-size: 90%;
+	text-align: justify;
+	margin-bottom: 4%;
+}
+
+.aceptar {
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.formulario {
+	color: black;
+	font-size: 100%;
+	text-align: justify;
+	margin-top: 3%;
+}

@@ -1,0 +1,244 @@
+.fondo {
+
+    background: rgb(255, 255, 255, 0.4);
+    border: 1px solid rgb(255, 255, 255, 0.0);
+    border-radius: 50px;
+    padding: 5% 6%;
+    display: block;
+    margin: 2%;
+
+}
+
+
+/**************ENCABEZADO**************/
+
+.fondo .encabezado {
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.fondo .encabezado img {
+
+    width: 20px;
+    height: 20px;
+}
+
+.fondo .encabezado a {
+
+    color: black;
+    text-decoration: underline;
+}
+
+.fondo .encabezado .encabezadoIzq {
+
+    margin-left: -13.5%;
+    width: 700px;
+}
+
+.fondo .encabezado .encabezadoDer {
+
+    width: 200px;
+    margin-right: -10%;
+}
+
+.fondo .encabezado text {
+
+    padding: 0% 0% 0% 1%;
+
+}
+
+/**************FOTOS**************/
+
+.fondo .fotos {
+
+    margin-top: 5%;
+    display: flex;
+}
+
+.fondo .fotos img {
+
+    height: 100%;
+    width: 100%;
+    padding: 1%;
+}
+
+.fondo .fotos img:hover {
+
+    border: 1px solid rgb(0, 0, 0, 0);
+    border-radius: 10px;
+}
+
+.fondo .fotos .fotoP {
+
+    height: 100%;
+    width: 100%;
+}
+
+.fondo .fotos .fotoS {
+
+    height: 50%;
+    width: 50%;
+
+}
+
+
+/**************ENCABEZADO 2**************/
+
+
+
+.fondo .encabezado2 {
+
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+}
+
+
+.fondo .encabezado2 img {
+
+
+    height: 100%;
+    width: 5%;
+    border: 1px solid rgb(0, 0, 0, 0);
+    border-radius: 100%;
+    margin-left: 10%;
+
+}
+
+
+
+
+
+/**************INFO Y PAGO**************/
+
+
+.fondo .cuerpo {
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.fondo .cuerpo div div img {
+
+    height: 40px;
+    width: 40px;
+    margin-right: 10%;
+}
+
+
+
+/*Info*/
+.fondo .cuerpo .info {
+
+    padding: 1%;
+    height: 100%;
+    width: 50%;
+    text-align: justify;
+
+
+}
+
+.fondo .cuerpo .info .texto a {
+
+    color: black;
+    text-decoration: underline;
+
+
+}
+
+.fondo .cuerpo .info .complemento {
+
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+
+
+}
+
+
+.fondo .cuerpo .info .complemento div {
+
+    padding: 1%;
+    margin-right: 30%;
+
+}
+
+.fondo .cuerpo .info .complemento div div {
+
+    display: flex;
+    align-items: center;
+    width: 180%;
+    height: 20%;
+}
+
+/*Pago*/
+
+.fondo .cuerpo .pago {
+    padding: 1%;
+    height: 100%;
+    width: 30%;
+    background-color: rgb(255, 255, 255, 0.8);
+    border: 1px;
+    border-radius: 20px;
+}
+
+
+
+.fondo .cuerpo .pago div {
+    padding: 3%;
+
+
+}
+
+.fondo .cuerpo .pago input {
+    margin-left: 1.2%;
+    border: 1px;
+    border-radius: 100px;
+    background: rgb(0, 0, 0, 0.3);
+}
+
+.fondo .cuerpo .pago .precio img {
+    height: 15px;
+    width: 15px;
+    margin-left: 3%;
+}
+
+.fondo .cuerpo .pago .precio a {
+    color: black;
+    text-decoration: underline;
+}
+
+.fondo .cuerpo .pago .precio del {
+    margin-right: 6%;
+    color: rgb(0, 0, 0, 0.5);
+}
+
+.fondo .cuerpo .pago .textH {
+    text-align: center;
+    margin-bottom: -4%;
+}
+
+.fondo .cuerpo .pago .huesped {
+    text-align: center;
+}
+
+.fondo .cuerpo .pago .huesped input {
+    height: 50px;
+    width: 200px;
+}
+
+.fondo .cuerpo .pago .huesped input::placeholder {
+    text-align: center;
+}
+
+.fondo .cuerpo .pago .buttons {
+    display: block;
+    text-align: center;
+    background: rgb(224, 86, 91);
+    padding: 3%;
+    border: 1px;
+    border-radius: 10px;
+    color: black;
+}

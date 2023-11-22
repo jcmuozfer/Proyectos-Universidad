@@ -1,0 +1,11 @@
+[comment encoding = UTF-8 /]
+[module Negocio('http://org/eclipse/example/bowling', 'http://www.example.org/workflow')]
+
+[import org::eclipse::acceleo::module::Negocio::main::Actor /]
+[import org::eclipse::acceleo::module::Negocio::main::BaseDatos /]
+[template public generarNegocio(negocio : Workflow)]
+[comment @main/]
+
+[negocio.actor.Actor()/]
+[negocio.basedatos.generarBaseDatos()/]
+[/template]

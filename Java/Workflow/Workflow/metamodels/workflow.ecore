@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="workflow" nsURI="http://www.example.org/workflow" nsPrefix="workflow">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eAnnotations source="gmf"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Workflow">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R01 R02"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R01" value="actor.tarea->selectByType(Inicio)->size()=1"/>
+      <details key="R02" value="actor.tarea->selectByType(Fin)->size()=1"/>
+    </eAnnotations>
+    <eAnnotations source="gmf.diagram"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="basedatos" lowerBound="1"
+        upperBound="-1" eType="#//BaseDatos" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actor" lowerBound="1" upperBound="-1"
+        eType="#//Actor" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Actor">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R05"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R05" value="self.tarea->selectByKind (Intermedia)->size()>=1"/>
+    </eAnnotations>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fichero" upperBound="-1"
+        eType="#//Fichero" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formulario" upperBound="-1"
+        eType="#//Formulario" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tarea" lowerBound="1" upperBound="-1"
+        eType="#//Tarea" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enlace" lowerBound="1"
+        upperBound="-1" eType="#//Enlace" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="num_tareas" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+        <details key="derivation" value="self.tarea->size()"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BaseDatos">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tabla" lowerBound="1" upperBound="-1"
+        eType="#//Tabla" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tabla">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+      <details key="figure" value="svg"/>
+      <details key="svg.uri" value="platform:/plugin/Workflow/Img/ftinserttable.svg"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formulario" lowerBound="1"
+        eType="#//Formulario" eOpposite="#//Formulario/insertar">
+      <eAnnotations source="gmf.link">
+        <details key="target" value="formulario"/>
+        <details key="color" value="130,204,224"/>
+        <details key="target.decoration" value="arrow"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Fichero">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Formulario">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="campo" lowerBound="1" upperBound="-1"
+        eType="#//Campo" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="insertar" lowerBound="1"
+        eType="#//Tabla" eOpposite="#//Tabla/formulario"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Enlace">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R06"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R06" value="self.destino &lt;> self.origen"/>
+    </eAnnotations>
+    <eAnnotations source="gmf.link">
+      <details key="source" value="origen"/>
+      <details key="target" value="destino"/>
+      <details key="color" value="29,250,42"/>
+      <details key="target.decoration" value="arrow"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destino" lowerBound="1"
+        eType="#//Tarea" eOpposite="#//Tarea/entrante"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="origen" lowerBound="1"
+        eType="#//Tarea" eOpposite="#//Tarea/saliente"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tarea" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entrante" eType="#//Enlace"
+        eOpposite="#//Enlace/destino"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="saliente" eType="#//Enlace"
+        eOpposite="#//Enlace/origen"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Inicio" eSuperTypes="#//Tarea">
+    <eAnnotations source="gmf.node">
+      <details key="label.placement" value="none"/>
+      <details key="figure" value="svg"/>
+      <details key="svg.uri" value="platform:/plugin/Workflow/Img/ftline-rect-begin.svg"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R03"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R03" value="self.entrante->isEmpty() and self.saliente->size()=1 "/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Fin" eSuperTypes="#//Tarea">
+    <eAnnotations source="gmf.node">
+      <details key="label.placement" value="none"/>
+      <details key="figure" value="svg"/>
+      <details key="svg.uri" value="platform:/plugin/Workflow/Img/ftline-circle-end.svg"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R04"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R04" value="self.saliente->isEmpty() and self.entrante->size()=1 "/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Intermedia" abstract="true" eSuperTypes="#//Tarea">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descripcion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Usuario" eSuperTypes="#//Intermedia">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+      <details key="figure" value="svg"/>
+      <details key="svg.uri" value="platform:/plugin/Workflow/Img/ftkuser.svg"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="formulario" lowerBound="1"
+        eType="#//Formulario">
+      <eAnnotations source="gmf.link">
+        <details key="target" value="formulario"/>
+        <details key="color" value="162,247,59"/>
+        <details key="target.decoration" value="arrow"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Servicio" eSuperTypes="#//Intermedia">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+      <details key="figure" value="svg"/>
+      <details key="svg.uri" value="platform:/plugin/Workflow/Img/service.svg"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genera" upperBound="-1"
+        eType="#//Fichero">
+      <eAnnotations source="gmf.link">
+        <details key="target" value="genera"/>
+        <details key="color" value="162,247,59"/>
+        <details key="target.decoration" value="arrow"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lee" upperBound="-1" eType="#//Fichero">
+      <eAnnotations source="gmf.link">
+        <details key="target" value="lee"/>
+        <details key="color" value="121,190,38"/>
+        <details key="target.decoration" value="arrow"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actualiza" lowerBound="1"
+        eType="#//Tabla">
+      <eAnnotations source="gmf.link">
+        <details key="target" value="actualiza"/>
+        <details key="color" value="97,154,30"/>
+        <details key="target.decoration" value="arrow"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnvioMensaje" eSuperTypes="#//Intermedia">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R08 R07E R10E"/>
+    </eAnnotations>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+      <details key="figure" value="svg"/>
+      <details key="svg.uri" value="platform:/plugin/Workflow/Img/Crooked-mail-1.svg"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R08" value="self.oclContainer() &lt;> self.saliente.destino.oclContainer() "/>
+      <details key="R07E" value="self.saliente.destino.oclIsTypeOf(RecepcionMensaje)"/>
+      <details key="R10E" value="self.codificacion = self.saliente.destino. oclAsType(RecepcionMensaje).codificacion"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codificacion" eType="#//Codificacion"
+        defaultValueLiteral="JSON"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fichero" eType="#//Fichero">
+      <eAnnotations source="gmf.link">
+        <details key="target" value="fichero"/>
+        <details key="color" value="249,233,39"/>
+        <details key="target.decoration" value="arrow"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RecepcionMensaje" eSuperTypes="#//Intermedia">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="R07R R10R"/>
+    </eAnnotations>
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+      <details key="figure" value="svg"/>
+      <details key="svg.uri" value="platform:/plugin/Workflow/Img/Anonymous-aiga-mail.svg"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="R07R" value="self.entrante.origen.oclIsTypeOf(EnvioMensaje)"/>
+      <details key="R10R" value="self.codificacion = self.entrante.origen.oclAsType(EnvioMensaje).codificacion"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="codificacion" eType="#//Codificacion"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConsultaBD" eSuperTypes="#//Intermedia">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+      <details key="figure" value="svg"/>
+      <details key="svg.uri" value="platform:/plugin/Workflow/Img/interrogation.svg"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="consulta" lowerBound="1"
+        eType="#//Tabla">
+      <eAnnotations source="gmf.link">
+        <details key="target" value="consulta"/>
+        <details key="color" value="181,45,249"/>
+        <details key="target.decoration" value="arrow"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BorradoBD" eSuperTypes="#//Intermedia">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+      <details key="figure" value="svg"/>
+      <details key="svg.uri" value="platform:/plugin/Workflow/Img/erase.svg"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="borra" lowerBound="1" eType="#//Tabla">
+      <eAnnotations source="gmf.link">
+        <details key="target" value="borra"/>
+        <details key="color" value="126,25,177"/>
+        <details key="target.decoration" value="arrow"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Codificacion">
+    <eLiterals name="JSON"/>
+    <eLiterals name="XML" value="1"/>
+    <eLiterals name="YAML" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Campo" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Enteros" eSuperTypes="#//Campo">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Booleanos" eSuperTypes="#//Campo">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Strings" eSuperTypes="#//Campo">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Listas" eSuperTypes="#//Campo">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valor" lowerBound="1" upperBound="-1"
+        eType="#//Valor" containment="true">
+      <eAnnotations source="gmf.compartment"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Valor">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="nombre"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" defaultValueLiteral=""
+        iD="true"/>
+  </eClassifiers>
+</ecore:EPackage>

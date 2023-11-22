@@ -1,0 +1,42 @@
+
+	<div class="cabeceraMenu">
+		<nav>
+			<ul>
+				<li>
+						<a  class="menu" data-ng-href = "#!/CrearAlojamiento"  class="buttons" >Añadir Alojamiento </a>
+						
+				</li>
+			</ul>
+			<ul>
+			
+				<li>
+						<a  class="menu" data-ng-href = "#!/"  class="buttons" >Volver a Categoría </a>
+						
+				</li>
+
+			</ul>			
+		</nav>
+	</div>
+	<div class="fondo">
+
+	<div class="cuerpo">
+				
+			
+				<div class="info" data-ng-repeat = "Hosting in alojamientosUsuario.alojamientos">						
+
+						<div>
+							<div>
+								<b>{{ Hosting.title }}</b> ({{ Hosting.location }})
+							</div>
+							<div>Numero de Me Gustas: {{ Hosting.likes }}</div>
+						</div>
+						<div>
+							<div>Contacto: {{ Hosting.telephone }},
+								{{ Hosting.contactEmail }}</div>
+					<a class="botonAlojamiento"  data-ng-href = "#!/EditarAlojamiento/{{Hosting.id}}"  >Editar </a>
+						</div>
+				</div>
+		   
+			</div>
+		</div>
+
